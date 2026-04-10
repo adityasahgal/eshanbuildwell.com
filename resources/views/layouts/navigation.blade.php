@@ -51,6 +51,15 @@
         </li>
         @endcanany
 
+        @canany(['calculator-pricing-create','calculator-pricing-edit','calculator-pricing-delete','calculator-pricing-publish'])
+        <li class="nav-item">
+            <a href="{{ route('calculator-pricing.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-calculator"></i>
+                <p>Calculator Pricing</p>
+            </a>
+        </li>
+        @endcanany
+
         @can('enquiry-read')
         <li class="nav-item">
             <a href="{{ route('enquiry.index') }}" class="nav-link">

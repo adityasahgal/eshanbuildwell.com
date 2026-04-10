@@ -13,7 +13,7 @@ $genSetting = \App\Models\Setting::first();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
 
     @yield('meta')
-    <!-- <link rel="icon" type="image/png" href="{{ url('storage/' . $genSetting['favicon']) }}"> -->
+    <link rel="icon" type="image/png" href="{{ url('storage/' . $genSetting['favicon']) }}">
 
 
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/bootstrap.min.css') }}" />

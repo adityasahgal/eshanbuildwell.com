@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\CalculatorPricing;
 use App\Models\Category;
 use App\Models\Enquiry;
 use App\Models\Service;
@@ -31,7 +32,18 @@ class MainController extends Controller
 
     public function calculator()
     {
-        return view('frontend.calculator');
+        $pricing = CalculatorPricing::firstOrCreate(
+            ['id' => 1],
+            [
+                'structure_basic' => 1100, 'structure_standard' => 1450, 'structure_premium' => 1900,
+                'finishing_basic' => 500,  'finishing_standard' => 800,  'finishing_premium' => 1250,
+                'mep_basic'       => 200,  'mep_standard'       => 350,  'mep_premium'       => 550,
+                'facade_basic'    => 105,  'facade_standard'    => 180,  'facade_premium'    => 280,
+                'external_basic'  => 0,    'external_standard'  => 80,   'external_premium'  => 150,
+                'location_metro'  => 1.10, 'location_urban'     => 1.00, 'location_hill'     => 1.20,
+            ]
+        );
+        return view('frontend.calculator', compact('pricing'));
     }
 
     public function about_us()

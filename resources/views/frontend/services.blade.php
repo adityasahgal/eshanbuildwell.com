@@ -46,16 +46,16 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
   <div class="container">
     <div class="text-center mb-5">
       <p class="sec-eyebrow">We Build with Precision</p>
-      <h2 class="sec-title">Our Core Services</h2>
+      <h2 class="sec-title">Our Premium Services</h2>
       <div class="sec-line center"><span class="sec-sub">Comprehensive construction solutions tailored to your needs</span></div>
     </div>
     <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80" alt="Building Construction"/><span class="svc-badge">Residential &amp; Commercial</span></div><div class="svc-body"><h4>Building Construction</h4><p>Complete construction for residential, commercial &amp; industrial projects with quality workmanship and end-to-end execution control.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Site supervision &amp; execution control</li><li><i class="bi bi-check-circle-fill"></i>Quality material sourcing &amp; procurement</li><li><i class="bi bi-check-circle-fill"></i>Structural &amp; civil engineering works</li><li><i class="bi bi-check-circle-fill"></i>MEP (Mechanical, Electrical &amp; Plumbing)</li></ul><a href="contact.html" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="Turnkey Construction"/><span class="svc-badge">End-to-End</span></div><div class="svc-body"><h4>Turnkey Construction</h4><p>End-to-end service (Design → Planning → Construction → Handover). One contract, one team, zero hassle.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>All aspects in a single contract</li><li><i class="bi bi-check-circle-fill"></i>Architectural design &amp; layout planning</li><li><i class="bi bi-check-circle-fill"></i>Interior fit-out &amp; finishing works</li><li><i class="bi bi-check-circle-fill"></i>Ready-to-occupy handover</li></ul><a href="contact.html" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" alt="PMC"/><span class="svc-badge">PMC</span></div><div class="svc-body"><h4>Project Management Consultancy (PMC)</h4><p>Expert consultancy for project oversight, contractor coordination, and risk management.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Contractor selection guidance</li><li><i class="bi bi-check-circle-fill"></i>Site monitoring &amp; risk reduction</li><li><i class="bi bi-check-circle-fill"></i>Timeline management &amp; reporting</li><li><i class="bi bi-check-circle-fill"></i>Budget tracking &amp; cost control</li></ul><a href="contact.html" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80" alt="Renovation"/><span class="svc-badge">Renovation</span></div><div class="svc-body"><h4>Home Renovation &amp; Remodelling</h4><p>Transform your existing space with our expert renovation services — from room makeovers to complete overhauls.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Kitchen &amp; bathroom upgrades</li><li><i class="bi bi-check-circle-fill"></i>Flooring, painting &amp; false ceiling</li><li><i class="bi bi-check-circle-fill"></i>Structural repair &amp; waterproofing</li></ul><a href="contact.html" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80" alt="Interior Design"/><span class="svc-badge">Interiors</span></div><div class="svc-body"><h4>Interior Design &amp; Fit-Out</h4><p>Professional interior design that combines aesthetics with functionality for beautiful, practical spaces.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>3D design visualisation</li><li><i class="bi bi-check-circle-fill"></i>Custom furniture &amp; joinery</li><li><i class="bi bi-check-circle-fill"></i>Commercial office fit-outs</li></ul><a href="contact.html" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="BOQ"/><span class="svc-badge">Estimation</span></div><div class="svc-body"><h4>BOQ Preparation &amp; Cost Estimation</h4><p>Accurate Bill of Quantities and detailed cost estimation to help you budget effectively.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Detailed item-wise cost breakdown</li><li><i class="bi bi-check-circle-fill"></i>Market-rate material pricing</li><li><i class="bi bi-check-circle-fill"></i>Tender document preparation</li></ul><a href="calculator.html" class="btn-read">Get Estimate <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1541888081-0113f8d29864?w=700&q=80" alt="Building Construction"/><span class="svc-badge">Construction</span></div><div class="svc-body"><h4>Building Construction</h4><p>Complete construction services for residential, commercial, and industrial projects with proper planning, discipline, and cost control.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Residential, Commercial &amp; Industrial</li><li><i class="bi bi-check-circle-fill"></i>Turnkey Construction Solutions</li><li><i class="bi bi-check-circle-fill"></i>Strong Quality Control</li><li><i class="bi bi-check-circle-fill"></i>Experienced Site Supervision</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="PMC"/><span class="svc-badge">PMC</span></div><div class="svc-body"><h4>Project Management Consultancy</h4><p>Ensure your project is executed professionally with proper coordination, monitoring, and cost control at every stage.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Project Planning &amp; Scheduling</li><li><i class="bi bi-check-circle-fill"></i>Contractor &amp; Vendor Coordination</li><li><i class="bi bi-check-circle-fill"></i>Quality Assurance &amp; Inspection</li><li><i class="bi bi-check-circle-fill"></i>Cost Monitoring &amp; Budget Control</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Turnkey"/><span class="svc-badge">Turnkey</span></div><div class="svc-body"><h4>Turnkey Construction</h4><p>A complete solution from design to final handover under one contract, ensuring hassle-free project execution.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Design + Planning + Execution</li><li><i class="bi bi-check-circle-fill"></i>Material &amp; Labour Management</li><li><i class="bi bi-check-circle-fill"></i>Complete Construction Responsibility</li><li><i class="bi bi-check-circle-fill"></i>Final Ready-to-Use Delivery</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=80" alt="Estimation"/><span class="svc-badge">Estimation</span></div><div class="svc-body"><h4>Estimation &amp; Costing</h4><p>Accurate estimation is the foundation of success. We provide detailed BOQ and cost planning to ensure financial clarity.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>BOQ Preparation</li><li><i class="bi bi-check-circle-fill"></i>Material Rate Analysis</li><li><i class="bi bi-check-circle-fill"></i>Labour Cost Estimation</li><li><i class="bi bi-check-circle-fill"></i>Better Budget Planning</li></ul><a href="calculator.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80" alt="Architecture"/><span class="svc-badge">Architecture</span></div><div class="svc-body"><h4>Architecture &amp; Structural Design</h4><p>Smart and practical design solutions combining beautiful aesthetics with structural safety and functionality.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Architectural Layout Planning</li><li><i class="bi bi-check-circle-fill"></i>2D &amp; 3D Design</li><li><i class="bi bi-check-circle-fill"></i>Structural Design &amp; Analysis</li><li><i class="bi bi-check-circle-fill"></i>Working Drawings</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Landowner Collaboration"/><span class="svc-badge">Collaboration</span></div><div class="svc-body"><h4>Landowner Collaboration Service</h4><p>We partner with landowners to develop projects through transparent agreements and professional execution.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Joint Development Projects</li><li><i class="bi bi-check-circle-fill"></i>Profit Sharing Models</li><li><i class="bi bi-check-circle-fill"></i>Project Planning &amp; Execution</li><li><i class="bi bi-check-circle-fill"></i>Legal &amp; Liaison Support</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
     </div>
   </div>
 </section>
@@ -68,16 +68,49 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
       <h2 class="sec-title" style="color:#fff">Our Construction Process</h2>
       <p class="sec-sub mx-auto mt-2" style="color:rgba(255,255,255,.6)">A streamlined, transparent approach that keeps you informed at every stage</p>
     </div>
-    <div class="row g-3 align-items-center">
-      <div class="col-6 col-md-4 col-lg"><div class="step-card"><div class="step-num">01</div><h5>Consultation</h5><p>Free initial meeting to understand your requirements</p></div></div>
-      <div class="col-auto step-arrow d-none d-lg-flex"><i class="bi bi-chevron-right"></i></div>
-      <div class="col-6 col-md-4 col-lg"><div class="step-card"><div class="step-num">02</div><h5>Planning &amp; Design</h5><p>Detailed architectural drawings, BOQ &amp; cost estimation</p></div></div>
-      <div class="col-auto step-arrow d-none d-lg-flex"><i class="bi bi-chevron-right"></i></div>
-      <div class="col-6 col-md-4 col-lg"><div class="step-card"><div class="step-num">03</div><h5>Approvals</h5><p>Permit applications and regulatory compliance handled</p></div></div>
-      <div class="col-auto step-arrow d-none d-lg-flex"><i class="bi bi-chevron-right"></i></div>
-      <div class="col-6 col-md-4 col-lg"><div class="step-card"><div class="step-num">04</div><h5>Construction</h5><p>Execution with daily supervision and quality checks</p></div></div>
-      <div class="col-auto step-arrow d-none d-lg-flex"><i class="bi bi-chevron-right"></i></div>
-      <div class="col-6 col-md-4 col-lg"><div class="step-card"><div class="step-num">05</div><h5>Handover</h5><p>Final inspection, snag list clearance and key handover</p></div></div>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="step-card h-100">
+          <div class="step-num">01</div>
+          <h5>Consultation</h5>
+          <p>We begin with understanding your requirements, vision, and budget. This stage helps us align expectations and define the project scope clearly.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="step-card h-100">
+          <div class="step-num">02</div>
+          <h5>Approx Estimate</h5>
+          <p>Based on initial inputs, we provide a rough cost estimate to give you a clear idea of project feasibility and budget planning.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="step-card h-100">
+          <div class="step-num">03</div>
+          <h5>Design &amp; Planning</h5>
+          <p>Our team develops architectural designs and detailed planning, ensuring proper space utilization, functionality, and execution strategy.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="step-card h-100">
+          <div class="step-num">04</div>
+          <h5>Accurate Costing</h5>
+          <p>We prepare a detailed BOQ and cost analysis with material specifications, ensuring transparency and eliminating hidden costs.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="step-card h-100">
+          <div class="step-num">05</div>
+          <h5>Construction</h5>
+          <p>Execution begins with strict quality control, site supervision, and regular coordination to ensure timely and disciplined project delivery.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="step-card h-100">
+          <div class="step-num">06</div>
+          <h5>Handover</h5>
+          <p>After completion, we deliver the project with proper finishing, quality checks, and final approvals—ready for use.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -119,14 +152,14 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 <!-- SPECIALIZED -->
 <section class="py-5 bg-white">
   <div class="container">
-    <div class="text-center mb-5"><p class="sec-eyebrow">Additional Expertise</p><h2 class="sec-title">Specialized Services</h2><div class="sec-line center"><span class="sec-sub">Beyond core construction — value-added services for complete project support</span></div></div>
+    <div class="text-center mb-5"><p class="sec-eyebrow">Comprehensive Solutions</p><h2 class="sec-title">Additional Services</h2><div class="sec-line center"><span class="sec-sub">Beyond core construction — value-added services for complete project support</span></div></div>
     <div class="row g-3">
-      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-geo-alt-fill"></i></div><div><h5>Site Survey &amp; Soil Testing</h5><p>Comprehensive site analysis including soil bearing capacity and topography assessment before breaking ground.</p></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-droplet-fill"></i></div><div><h5>Waterproofing Solutions</h5><p>Advanced waterproofing for roofs, basements, bathrooms, and external facades using premium materials.</p></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-lightning-fill"></i></div><div><h5>Electrical &amp; Plumbing Works</h5><p>Complete MEP services including wiring, switchgear, plumbing, and drainage by certified technicians.</p></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-paint-bucket"></i></div><div><h5>External &amp; Internal Finishing</h5><p>Premium plastering, tiling, painting, and decorative finishes that elevate your property's appeal.</p></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-file-earmark-text-fill"></i></div><div><h5>Building Plan Approval</h5><p>Liaison with local municipal authorities for plan sanction, permits, and completion certificates.</p></div></div></div>
-      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-shield-check"></i></div><div><h5>Quality Audit &amp; Inspection</h5><p>Third-party quality audit services to verify workmanship standards at every critical milestone.</p></div></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-box-fill"></i></div><div><h5>Building Information Modeling (BIM)</h5><p>Advanced BIM services for accurate visualization, coordination, and clash detection, ensuring error-free execution.</p></div></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-receipt"></i></div><div><h5>Construction Bills Audit</h5><p>Verify contractor bills and quantities to ensure accuracy, transparency, and fair cost control throughout the project.</p></div></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-window-fullscreen"></i></div><div><h5>External Facade Services</h5><p>Design and execution of modern building facades to enhance aesthetics, durability, and overall building value.</p></div></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-file-earmark-check-fill"></i></div><div><h5>Building Plan Approval</h5><p>Complete assistance in getting building plans approved from local authorities with proper liaison support.</p></div></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-shield-check"></i></div><div><h5>Quality Audit &amp; Inspection</h5><p>Independent quality checks and inspections to ensure construction work meets required standards and safety norms.</p></div></div></div>
+      <div class="col-12 col-sm-6 col-lg-4"><div class="spec-card"><div class="spec-icon"><i class="bi bi-paint-bucket"></i></div><div><h5>External &amp; Internal Finishing</h5><p>End-to-end finishing services including plaster, paint, flooring, and interiors to deliver a complete space.</p></div></div></div>
     </div>
   </div>
 </section>

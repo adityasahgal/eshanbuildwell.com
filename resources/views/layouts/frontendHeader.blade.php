@@ -43,19 +43,20 @@
 
 <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}"><div class="brand-icon"><span></span><span></span><span></span></div><div class="brand-name"><strong>ESHAN</strong> <span>BUILDWELL</span></div></a>
+    <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ url('storage/' . $genSetting['logo']) }}" alt="Eshan Buildwell Logo" style="max-height: 50px;"></a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link active" href="{{ url('/') }}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('about-us') }}">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('contact-us') }}">Contact Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('services') }}">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('projects') }}">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('calculator') }}">Calculator</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url('blog') }}">Blog</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->is('about-us') ? 'active' : '' }}" href="{{ url('about-us') }}">About Us</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->is('services') ? 'active' : '' }}" href="{{ url('services') }}">Services</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->is('calculator') ? 'active' : '' }}" href="{{ url('calculator') }}">Cost Estimator</a></li>
+        <!-- <li class="nav-item"><a class="nav-link {{ request()->is('calculator') ? 'active' : '' }}" href="{{ url('calculator') }}">Accurate Estimator</a></li> -->
+        <li class="nav-item"><a class="nav-link {{ request()->is('projects') ? 'active' : '' }}" href="{{ url('projects') }}">Projects</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->is('contact-us') ? 'active' : '' }}" href="{{ url('contact-us') }}">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link {{ request()->is('blog') ? 'active' : '' }}" href="{{ url('blog') }}">Blog</a></li>
       </ul>
-      <a href="tel:+919876543210" class="btn-call ms-lg-3 mt-2 mt-lg-0"><i class="bi bi-telephone-fill"></i> Call: +91 9876543210</a>
+      <a href="tel:+919876543210" class="btn-call ms-lg-3 mt-2 mt-lg-0"><i class="bi bi-telephone-fill"></i> {{ $genSetting['phone'] }}</a>
     </div>
   </div>
 </nav>

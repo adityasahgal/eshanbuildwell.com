@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CalculatorPricingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
@@ -116,6 +117,10 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
             Route::post('roles/grantStore', [RoleController::class, 'grantStore'])->name('roles.grantStore');
             Route::post('roles/update', [RoleController::class, 'update'])->name('roles.update');
             Route::post('roles/destroy', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+            // Calculator Pricing Routes
+            Route::get('calculator-pricing', [CalculatorPricingController::class, 'index'])->name('calculator-pricing.index');
+            Route::post('calculator-pricing/update', [CalculatorPricingController::class, 'update'])->name('calculator-pricing.update');
 
             //Permission Routes
             Route::get('permission', [PermissionController::class, 'index'])->name('permission.index');

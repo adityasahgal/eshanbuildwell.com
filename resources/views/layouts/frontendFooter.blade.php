@@ -5,7 +5,7 @@
                 <!-- Logo and Contact Info -->
                 <div class="col-md-6 col-lg-6">
                     <div class="footer-item">
-                        <p class="text-white-50 mb-3">Disclaimer: Villa availability, pricing, and amenities are subject to change and may vary based on seasonal factors. Please confirm all details regarding our one, two, and three-bedroom villas with our team before making any reservations or commitments.</p>
+                        <p class="text-white-50 mb-3">{{ $genSetting['footer_text'] }}</p>
                         <div class="d-flex align-items-start text-white-50 mb-2">
                             <i class="fas fa-map-marker-alt footer-icons me-3"></i>
                             <p class="mb-0">{{ $genSetting['address'] }}</p>

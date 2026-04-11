@@ -34,7 +34,5 @@ $genSetting = \App\Models\Setting::first();
 @include('layouts.frontendFooter')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
-
-<script src="{{ url('assets/js/custom.js') }}"></script> -->
+@stack('scripts')
 <span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span>

@@ -184,6 +184,20 @@ class MainController extends Controller
 
     public function storeEnquiry(Request $request)
     {
+        $request->validate([
+            'g-recaptcha-response' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|numeric|digits_between:10,15',
+            'message' => 'required',
+        ], [
+            'g-recaptcha-response.required' => 'Please complete the reCAPTCHA to proceed.'
+        ]);
+
+        if (!$this->verifyRecaptcha($request->input('g-recaptcha-response'))) {
+            return redirect()->back()->with(['status' => 'danger', 'message' => 'ReCaptcha verification failed.'])->withInput();
+        }
+
         try {
             $enquiry = new Enquiry();
             $enquiry->pname = $request->pname;
@@ -205,14 +219,15 @@ class MainController extends Controller
     public function enquiry(Request $request)
     {
         $rules = [
-            'recaptcha' => 'required',
+            'g-recaptcha-response' => 'required',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|numeric|digits_between:10,15',
             'message' => 'required',
         ];
+
         $customMessages = [
-            'recaptcha.required' => 'Please complete the reCAPTCHA to proceed.',
+            'g-recaptcha-response.required' => 'Please complete the reCAPTCHA to proceed.',
             'name.required' => 'The name field is required.',
             'name.max' => 'The name may not be greater than 255 characters.',
             'email.required' => 'The email field is required.',
@@ -223,11 +238,17 @@ class MainController extends Controller
             'phone.digits_between' => 'The phone number must be between 10 and 15 digits.',
             'message.required' => 'The message field is required.',
         ];
+
         $validator = Validator::make($request->all(), $rules, $customMessages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        if (!$this->verifyRecaptcha($request->input('g-recaptcha-response'))) {
+            return redirect()->back()->with(['status' => 'danger', 'message' => 'ReCaptcha verification failed.'])->withInput();
+        }
+
         try {
             // Create and save the enquiry
             $enquiry = new Enquiry();
@@ -244,5 +265,22 @@ class MainController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with(['status' => 'danger', 'message' => $e->getMessage()]);
         }
+    }
+
+    private function verifyRecaptcha($token)
+    {
+        $secret = config('captcha.secret_key');
+        if (!$secret) {
+            // Fallback to env if config not set correctly
+            $secret = env('GOOGLE_CAPTCHA_SECRET_KEY');
+        }
+        
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => $secret,
+            'response' => $token,
+            'remoteip' => request()->ip(),
+        ]);
+
+        return $response->json('success');
     }
 }

@@ -15,7 +15,7 @@
             </a>
         </li>
         @endcanany
-        @canany(['category-create','category-edit','category-delete','category-publish'])
+        <!-- @canany(['category-create','category-edit','category-delete','category-publish'])
         <li class="nav-item">
             <a href="{{ route('category.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
@@ -40,7 +40,7 @@
                 <p>Services</p>
             </a>
         </li>
-        @endcanany
+        @endcanany -->
 
         @canany(['blog-create','blog-edit','blog-delete','blog-publish'])
         <li class="nav-item">

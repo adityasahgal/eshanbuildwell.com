@@ -28,12 +28,45 @@ $keywords = "Contact Eshan Buildwell, construction services, building projects, 
         <div class="contact-form-box h-100">
           <h4>Contact Us</h4>
           <p class="sub">Have questions or want to discuss your project? Fill out the form and we'll get back to you shortly!</p>
-          <div class="mb-3"><input type="text" class="form-control" placeholder="Your Name"/></div>
-          <div class="mb-3"><input type="email" class="form-control" placeholder="Your Email"/></div>
-          <div class="mb-3"><input type="tel" class="form-control" placeholder="Your Phone"/></div>
-          <div class="mb-3"><textarea class="form-control" rows="4" placeholder="Your Message"></textarea></div>
-          <button class="btn-send" onclick="sendMsg()">Send Message</button>
-          <div class="success-msg" id="successMsg"><i class="bi bi-check-circle-fill me-2"></i>Thank you! We'll get back to you within 24 hours.</div>
+          
+          @if(session('status'))
+            <div class="alert alert-{{ session('status') == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          @endif
+
+          @if($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+
+          <form action="/enquiry" method="POST" id="contactForm">
+            @csrf
+            <div class="mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Your Name" value="{{ old('name') }}" required/>
+            </div>
+            <div class="mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Your Email" value="{{ old('email') }}" required/>
+            </div>
+            <div class="mb-3">
+                <input type="tel" name="phone" class="form-control" placeholder="Your Phone" value="{{ old('phone') }}" required/>
+            </div>
+            <div class="mb-3">
+                <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required>{{ old('message') }}</textarea>
+            </div>
+            
+            <div class="mb-3">
+                <div class="g-recaptcha" data-sitekey="{{ config('captcha.site_key') ?: env('GOOGLE_CAPTCHA_SITE_KEY') }}"></div>
+            </div>
+
+            <button type="submit" class="btn-send">Send Message</button>
+          </form>
         </div>
       </div>
       <div class="col-12 col-lg-7">
@@ -48,3 +81,7 @@ $keywords = "Contact Eshan Buildwell, construction services, building projects, 
 
 
 @endsection
+
+@push('scripts')
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endpush

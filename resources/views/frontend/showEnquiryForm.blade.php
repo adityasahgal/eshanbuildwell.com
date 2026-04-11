@@ -23,7 +23,11 @@
               <!--<div class="checkbox">-->
               <!--  <label><input type="checkbox" required> Remember me</label>-->
               <!--</div>-->
-              <div class="text-center">
-              <button type="submit" class="btn btn-info">Send Enquiry</button>
+              <div class="form-group mb-3">
+                  <div class="g-recaptcha" data-sitekey="{{ config('captcha.site_key') ?: env('GOOGLE_CAPTCHA_SITE_KEY') }}"></div>
               </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-info">Send Enquiry</button>
+              </div>
+              <script src="https://www.google.com/recaptcha/api.js" async defer></script>
             </form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\CalculatorEnquiry;
 use App\Models\CalculatorPricing;
 use App\Models\Category;
 use App\Models\Enquiry;
@@ -130,6 +131,49 @@ class MainController extends Controller
         }
 
         return abort(404);
+    }
+
+    public function storeCalculatorEnquiry(Request $request)
+    {
+        $request->validate([
+            'name'               => 'required|string|max:255',
+            'email'              => 'required|email|max:255',
+            'phone'              => 'required|string|max:20',
+            'total_cost'         => 'required|numeric|min:0',
+        ]);
+
+        CalculatorEnquiry::create([
+            'name'               => $request->name,
+            'email'              => $request->email,
+            'phone'              => $request->phone,
+            'project_type'       => $request->project_type       ?? 'Residential',
+            'plot_length'        => $request->plot_length        ?? 0,
+            'plot_width'         => $request->plot_width         ?? 0,
+            'plot_area'          => $request->plot_area          ?? 0,
+            'builtup_per_floor'  => $request->builtup_per_floor  ?? 0,
+            'total_floors'       => $request->total_floors       ?? 1,
+            'total_builtup'      => $request->total_builtup      ?? 0,
+            'basement_required'  => $request->basement_required  ?? 'No',
+            'basement_area'      => $request->basement_area      ?? 0,
+            'structure_quality'  => $request->structure_quality  ?? 'Standard',
+            'finishing_quality'  => $request->finishing_quality  ?? 'Standard',
+            'mep_quality'        => $request->mep_quality        ?? 'Standard',
+            'facade_type'        => $request->facade_type        ?? 'Standard',
+            'external_dev'       => $request->external_dev       ?? 'Standard',
+            'location'           => $request->location           ?? 'Urban',
+            'contingency'        => $request->contingency        ?? 'No',
+            'structure_cost'     => $request->structure_cost     ?? 0,
+            'basement_cost'      => $request->basement_cost      ?? 0,
+            'finishing_cost'     => $request->finishing_cost     ?? 0,
+            'mep_cost'           => $request->mep_cost           ?? 0,
+            'facade_cost'        => $request->facade_cost        ?? 0,
+            'external_cost'      => $request->external_cost      ?? 0,
+            'location_factor'    => $request->location_factor    ?? 0,
+            'contingency_amount' => $request->contingency_amount ?? 0,
+            'total_cost'         => $request->total_cost,
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Enquiry stored successfully.']);
     }
 
     public function showEnquiryModal(Request $request)

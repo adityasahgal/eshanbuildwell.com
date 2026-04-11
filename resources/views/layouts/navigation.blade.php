@@ -67,7 +67,16 @@
                 <p>Enquiry</p>
             </a>
         </li>
-        @endcanany
+        @endcan
+
+        @can('calculator-enquiry-read')
+        <li class="nav-item">
+            <a href="{{ route('calculator-enquiry.index') }}" class="nav-link {{ Route::is('calculator-enquiry.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-calculator"></i>
+                <p>Calculator Enquiry</p>
+            </a>
+        </li>
+        @endcan
 
         <li class="nav-item">
             <a href="{{ route('setting.index') }}" class="nav-link">

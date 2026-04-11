@@ -41,6 +41,7 @@ class CalculatorPricingController extends Controller
                 'location_metro'     => 1.10,
                 'location_urban'     => 1.00,
                 'location_hill'      => 1.20,
+                'basement_multiplier'=> 1.50,
             ]
         );
 
@@ -77,6 +78,8 @@ class CalculatorPricingController extends Controller
             'location_metro'     => 'required|numeric|min:0.5|max:3',
             'location_urban'     => 'required|numeric|min:0.5|max:3',
             'location_hill'      => 'required|numeric|min:0.5|max:3',
+            // Basement multiplier
+            'basement_multiplier'=> 'required|numeric|min:1|max:5',
         ]);
 
         CalculatorPricing::updateOrCreate(['id' => 1], $validated);

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CalculatorPricingController;
+use App\Http\Controllers\Admin\CalculatorEnquiryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
     Route::get('/services', [MainController::class, 'services']);
     Route::get('/projects', [MainController::class, 'projects']);
     Route::get('/calculator', [MainController::class, 'calculator']);
+    Route::post('/calculator/enquiry', [MainController::class, 'storeCalculatorEnquiry'])->name('calculator.enquiry.store');
     Route::get('/contact-us', [MainController::class, 'contact_us']);
     Route::post('showEnquiryModal', [MainController::class, 'showEnquiryModal']);
     Route::post('storeEnquiry', [MainController::class, 'storeEnquiry']);
@@ -121,6 +123,11 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
             // Calculator Pricing Routes
             Route::get('calculator-pricing', [CalculatorPricingController::class, 'index'])->name('calculator-pricing.index');
             Route::post('calculator-pricing/update', [CalculatorPricingController::class, 'update'])->name('calculator-pricing.update');
+
+            // Calculator Enquiry Routes (view only)
+            Route::get('calculator-enquiry', [CalculatorEnquiryController::class, 'index'])->name('calculator-enquiry.index');
+            Route::post('calculator-enquiry/show', [CalculatorEnquiryController::class, 'show'])->name('calculator-enquiry.show');
+            Route::get('calculator-enquiry/export', [CalculatorEnquiryController::class, 'export'])->name('calculator-enquiry.export');
 
             //Permission Routes
             Route::get('permission', [PermissionController::class, 'index'])->name('permission.index');

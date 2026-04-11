@@ -275,6 +275,40 @@
                     </div>
                 </div>
 
+                {{-- ========================
+                     BASEMENT MULTIPLIER
+                ========================= --}}
+                <div class="col-md-6">
+                    <div class="card card-outline card-pink pricing-card mb-4" style="border-left-color:#e91e8c;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-layer-group mr-2"></i>Basement Cost Multiplier
+                                <small class="text-muted font-weight-normal">(× structure rate)</small>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="font-weight-500">
+                                    Basement Multiplier
+                                    <small class="text-muted d-block mt-1">e.g. <strong>1.5</strong> means basement costs 1.5× the normal structure rate per sqft.<br>Basement area is auto-set to Plot Area when basement is selected.</small>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-times-circle"></i></span>
+                                    </div>
+                                    <input type="number" name="basement_multiplier"
+                                           class="form-control"
+                                           value="{{ old('basement_multiplier', $pricing->basement_multiplier) }}"
+                                           step="0.05" min="1" max="5" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">× rate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>{{-- end .row --}}
 
             {{-- Submit Button --}}

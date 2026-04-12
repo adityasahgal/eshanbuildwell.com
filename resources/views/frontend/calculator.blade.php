@@ -217,7 +217,6 @@ $keywords = "construction cost calculator, building estimate, residential constr
     .ep-toast.toast-success { border-left: 4px solid #22c55e; }
     .ep-toast.toast-error   { border-left: 4px solid #ef4444; }
 </style>
-
 {{-- ===================== MAIN SECTION ===================== --}}
 <section class="py-5 bg-light estimate-pro">
     <div class="container">
@@ -297,6 +296,7 @@ $keywords = "construction cost calculator, building estimate, residential constr
                                 <select id="projectType">
                                     <option value="Residential">Residential</option>
                                     <option value="Commercial">Commercial</option>
+                                    <option value="Industrial">Industrial</option>
                                 </select>
                             </div>
 
@@ -311,8 +311,8 @@ $keywords = "construction cost calculator, building estimate, residential constr
                             </div>
                             <div class="inp-wrap">
                                 <label>Plot Area (sq.ft)</label>
-                                <input type="number" id="plotArea" value="0" min="0" step="1">
-                                <span class="inp-note">Auto-filled from L × W, or enter manually</span>
+                                <input type="number" id="plotArea" readonly value="0" min="0" step="1">
+                                <span class="inp-note">Auto-calculated: Length × Width</span>
                             </div>
 
                             {{-- Floors --}}
@@ -322,7 +322,8 @@ $keywords = "construction cost calculator, building estimate, residential constr
                             </div>
                             <div class="inp-wrap">
                                 <label>Built-up Area per Floor (sq.ft)</label>
-                                <input type="number" id="builtupPerFloor" value="0" min="0" step="50">
+                                <input type="number" id="builtupPerFloor" readonly value="0" min="0" step="50">
+                                <span class="inp-note">Auto‑synced with Plot Area</span>
                             </div>
 
                             {{-- Basement toggle only – no area input (auto = plot area) --}}
@@ -332,14 +333,14 @@ $keywords = "construction cost calculator, building estimate, residential constr
                                     <option value="No" selected>No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
-                                <span class="inp-note" id="basementNote" style="display:none;">Basement area = Plot Area &middot; charged at {{ $pricing->basement_multiplier }}&times; structure rate</span>
+                                <span class="inp-note" id="basementNote" style="display:none;">Basement area = Plot Area &middot; charged at <span id="basementMultText">1.5</span>&times; structure rate</span>
                             </div>
 
                             {{-- Computed totals (readonly) --}}
                             <div class="inp-wrap">
                                 <label>Total Built-up Area (sq.ft)</label>
                                 <input type="number" id="totalBuiltup" readonly value="0">
-                                <span class="inp-note">Floors × per-floor area</span>
+                                <span class="inp-note">Auto-calculated: Floors × Built-up Per Floor</span>
                             </div>
 
                             {{-- Quality selects --}}
@@ -395,7 +396,7 @@ $keywords = "construction cost calculator, building estimate, residential constr
                                 <label>Contingency Buffer</label>
                                 <select id="contingency">
                                     <option value="No" selected>No</option>
-                                    <option value="Yes">Yes (+5%)</option>
+                                    <option value="Yes">Yes (+<span id="contingencyRateText">5</span>%)</option>
                                 </select>
                             </div>
 
@@ -421,31 +422,25 @@ $keywords = "construction cost calculator, building estimate, residential constr
                     </div>
 
                     {{-- Actual result --}}
-                    <div class="ep-card result-panel" id="resultPanel">
+                    <div class="ep-card result-panel" id="resultPanel" style="display:none;">
                         <div class="ep-card-title"><span>💰</span> Cost Estimate Summary</div>
                         <table class="summary-table">
                             <colgroup><col style="width:65%"><col style="width:35%"></colgroup>
                             <tbody>
-                                <tr><td>Structure Cost</td><td id="structureCostVal">₹0</td></tr>
-                                <tr class="basement-row" id="basementRow">
-                                    <td>Basement Cost <small class="text-muted" id="basementMultLabel">({{ $pricing->basement_multiplier }}&times;)</small></td>
-                                    <td id="basementCostVal">₹0</td>
-                                </tr>
+                                <tr><td>Structure Cost (incl. basement)</td><td id="structureCostVal">₹0</td></tr>
                                 <tr><td>Finishing Cost</td><td id="finishingCostVal">₹0</td></tr>
                                 <tr><td>MEP Services</td><td id="mepCostVal">₹0</td></tr>
                                 <tr><td>Front Facade Cost</td><td id="facadeCostVal">₹0</td></tr>
                                 <tr><td>External Work Cost</td><td id="externalCostVal">₹0</td></tr>
                                 <tr><td>Location Factor</td><td id="locationFactorVal">₹0</td></tr>
-                                <tr><td>Contingency Buffer</td><td id="contingencyVal">₹0</td></tr>
-                                <tr class="total-row">
-                                    <td><strong>Total Estimated Cost</strong></td>
-                                    <td id="totalCostVal">₹0</td>
-                                </tr>
+                                <tr><td>Contingency (Extra Buffer)</td><td id="contingencyVal">₹0</td></tr>
+                                <tr class="total-row"><td><strong>Total Estimated Project Cost</strong></td><td id="totalCostVal">₹0</td></tr>
                             </tbody>
                         </table>
-                        <div class="gst-note mt-2">⚠️ Plus GST extra as applicable</div>
-                        <div class="note-text">
-                            🔍 Approximate estimate. Final cost may vary based on design &amp; site conditions.
+                        <div class="gst-note mt-2">⚠️ Plus GST Extra As Applicable</div>
+                        <div class="note-text card p-2 bg-light border-0" style="font-size: 0.85rem;">
+                            <strong>Note:</strong> We have shared a preliminary total project estimate based on your inputs. If you would like a more detailed understanding, you can get an approximate cost breakup (Structure, Finishing, MEP Services, Facade & External Development) for a nominal charge of <strong>₹99</strong>.
+                            <div class="mt-2 text-primary"><strong>Payment option:</strong> UPI / Credit Card (₹99/- incl. GST)</div>
                         </div>
                     </div>
                 </div>
@@ -453,17 +448,17 @@ $keywords = "construction cost calculator, building estimate, residential constr
             </div>{{-- end .row --}}
 
             {{-- CTA Box (hidden until calculated) --}}
-            <div class="result-panel" id="ctaPanel">
+            <div id="ctaPanel" style="display:none;">
                 <div class="premium-box mt-4">
                     <div class="premium-text">
                         <h3>📋 Detailed BOQ &amp; Accurate Estimation</h3>
-                        <p>Get item-wise quantities, rates, specifications &amp; accurate costing</p>
+                        <p>For a fully detailed BOQ with item-wise quantities, Rate, specifications, and accurate costing, please contact us for our professional paid estimation service.</p>
                         <div><strong>Total Built-up area: </strong><span id="premiumArea">0</span> sq.ft</div>
                     </div>
                     <div class="mb-3 mb-md-0" style="text-align:right;">
                         <div class="premium-price">₹4/sq.ft <span style="font-size:.85rem;color:#cbd5e1;font-weight:400;">(incl. GST)</span></div>
                         <div style="font-weight:700;margin-top:4px;font-size:1.05rem;">
-                            Estimation Charges: ₹<span id="estimationCharge">0</span>
+                            Total Estimation Charges: ₹<span id="estimationCharge">0</span>
                         </div>
                     </div>
                     <button class="btn-premium" id="contactBtn">📞 Request Professional Estimate</button>
@@ -480,42 +475,71 @@ $keywords = "construction cost calculator, building estimate, residential constr
 {{-- Toast notification --}}
 <div class="ep-toast" id="epToast"></div>
 
-{{-- ===================== SCRIPTS ===================== --}}
+{{-- ===================== SCRIPTS (FIXED) ===================== --}}
 <script>
-// ---------------------------------------------------------------
-// Rate tables – injected from DB via PHP
-// ---------------------------------------------------------------
-const structureRates = {
-    Basic:    {{ $pricing->structure_basic }},
-    Standard: {{ $pricing->structure_standard }},
-    Premium:  {{ $pricing->structure_premium }}
-};
-const finishingRates = {
-    Basic:    {{ $pricing->finishing_basic }},
-    Standard: {{ $pricing->finishing_standard }},
-    Premium:  {{ $pricing->finishing_premium }}
-};
-const mepRates = {
-    Basic:    {{ $pricing->mep_basic }},
-    Standard: {{ $pricing->mep_standard }},
-    Premium:  {{ $pricing->mep_premium }}
-};
-const facadeRates = {
-    Basic:    {{ $pricing->facade_basic }},
-    Standard: {{ $pricing->facade_standard }},
-    Premium:  {{ $pricing->facade_premium }}
-};
-const externalRates = {
-    Basic:    {{ $pricing->external_basic }},
-    Standard: {{ $pricing->external_standard }},
-    Premium:  {{ $pricing->external_premium }}
-};
-const locationMultiplier = {
-    Metro: {{ $pricing->location_metro }},
-    Urban: {{ $pricing->location_urban }},
-    Hill:  {{ $pricing->location_hill }}
-};
-const BASEMENT_MULTIPLIER = {{ $pricing->basement_multiplier }};
+// Rate data from PHP
+const allPricingData = @json($allPricings);
+
+let activePricing = allPricingData['Residential'];
+
+let structureRates = {};
+let finishingRates = {};
+let mepRates = {};
+let facadeRates = {};
+let externalRates = {};
+let locationMultiplier = {};
+let BASEMENT_MULTIPLIER = 1.50;
+let CONTINGENCY_RATE = 5.00;
+
+function updateActiveRates() {
+    const type = document.getElementById('projectType').value;
+    activePricing = allPricingData[type] || allPricingData['Residential'];
+
+    structureRates = {
+        Basic: activePricing.structure_basic,
+        Standard: activePricing.structure_standard,
+        Premium: activePricing.structure_premium
+    };
+    finishingRates = {
+        Basic: activePricing.finishing_basic,
+        Standard: activePricing.finishing_standard,
+        Premium: activePricing.finishing_premium
+    };
+    mepRates = {
+        Basic: activePricing.mep_basic,
+        Standard: activePricing.mep_standard,
+        Premium: activePricing.mep_premium
+    };
+    facadeRates = {
+        Basic: activePricing.facade_basic,
+        Standard: activePricing.facade_standard,
+        Premium: activePricing.facade_premium
+    };
+    externalRates = {
+        Basic: activePricing.external_basic,
+        Standard: activePricing.external_standard,
+        Premium: activePricing.external_premium
+    };
+    locationMultiplier = {
+        Metro: activePricing.location_metro,
+        Urban: activePricing.location_urban,
+        Hill: activePricing.location_hill
+    };
+    BASEMENT_MULTIPLIER = activePricing.basement_multiplier;
+    CONTINGENCY_RATE    = activePricing.contingency_rate;
+    
+    // Update UI elements that depend on these rates
+    const multSpan = document.getElementById('basementMultText');
+    if (multSpan) multSpan.textContent = BASEMENT_MULTIPLIER;
+    const contSpan = document.getElementById('contingencyRateText');
+    if (contSpan) contSpan.textContent = CONTINGENCY_RATE;
+}
+
+// Initial call
+updateActiveRates();
+
+// Listener for project type change
+document.getElementById('projectType').addEventListener('change', updateActiveRates);
 
 const CSRF = '{{ csrf_token() }}';
 const STORE_URL = '{{ route("calculator.enquiry.store") }}';
@@ -593,31 +617,33 @@ function proceedToCalculator() {
 // Basement toggle – show info note, no area input needed
 // ---------------------------------------------------------------
 document.getElementById('basementReq')?.addEventListener('change', function() {
-    document.getElementById('basementNote').style.display =
-        this.value === 'Yes' ? 'block' : 'none';
+    const note = document.getElementById('basementNote');
+    if (note) note.style.display = this.value === 'Yes' ? 'block' : 'none';
 });
 
 // ---------------------------------------------------------------
 // Keep readonly fields (plot area, total builtup) updated live
-// so user can see them change as they type – no cost calc yet
 // ---------------------------------------------------------------
 function updateReadonlyFields() {
     const len = +document.getElementById('plotLength').value || 0;
     const wid = +document.getElementById('plotWidth').value  || 0;
-    if (len > 0 && wid > 0) {
-        // Only auto-fill if both length and width are set
-        document.getElementById('plotArea').value = (len * wid).toFixed(0);
-    }
+    
+    // Auto-calculate Plot Area
+    const plotArea = len * wid;
+    document.getElementById('plotArea').value = plotArea.toFixed(0);
+    
+    // Built-up per Floor always equals Plot Area
+    document.getElementById('builtupPerFloor').value = plotArea.toFixed(0);
 
-    const plotArea = +document.getElementById('plotArea').value || 0;
-    const bpf      = +document.getElementById('builtupPerFloor').value || 0;
-    const floors   = +document.getElementById('totalFloors').value     || 1;
-    const builtup  = (bpf > plotArea && plotArea > 0 ? plotArea : bpf) * floors;
-    document.getElementById('totalBuiltup').value = builtup.toFixed(0);
+    const floors = +document.getElementById('totalFloors').value || 1;
+    const totalBuiltup = plotArea * floors;
+    document.getElementById('totalBuiltup').value = totalBuiltup.toFixed(0);
 }
 
-['plotLength','plotWidth','builtupPerFloor','totalFloors','plotArea'].forEach(id => {
-    document.getElementById(id)?.addEventListener('input', updateReadonlyFields);
+// Listen to dimension & floor changes
+['plotLength', 'plotWidth', 'totalFloors'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateReadonlyFields);
 });
 
 // ---------------------------------------------------------------
@@ -628,20 +654,12 @@ function runCalculation() {
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculating…';
 
-    const len    = +document.getElementById('plotLength').value      || 0;
-    const wid    = +document.getElementById('plotWidth').value       || 0;
-    const bpf    = +document.getElementById('builtupPerFloor').value || 0;
-    const floors = +document.getElementById('totalFloors').value     || 1;
-
-    const plotArea     = +document.getElementById('plotArea').value || (len * wid);
-    const safeBuiltup  = (bpf > plotArea && plotArea > 0) ? plotArea : bpf;
-    const totalBuiltup = safeBuiltup * floors;
-
-    document.getElementById('plotArea').value     = plotArea.toFixed(0);
-    document.getElementById('totalBuiltup').value = totalBuiltup.toFixed(0);
+    // Get current values (all auto-synced already)
+    const plotArea   = +document.getElementById('plotArea').value || 0;
+    const floors     = +document.getElementById('totalFloors').value || 1;
+    const totalBuiltup = +document.getElementById('totalBuiltup').value || (plotArea * floors);
 
     const hasBasement  = document.getElementById('basementReq').value === 'Yes';
-    // Basement area = plot area automatically (no manual input)
     const basementArea = hasBasement ? plotArea : 0;
 
     const stQ = document.getElementById('structureQuality').value;
@@ -653,26 +671,25 @@ function runCalculation() {
     const con = document.getElementById('contingency').value;
 
     // ---- Core costs ----
-    const structureCost  = totalBuiltup  * structureRates[stQ];                          // above-ground floors
-    const basementCost   = basementArea  * structureRates[stQ] * BASEMENT_MULTIPLIER;    // basement @ DB multiplier×
-    const finishingCost  = (totalBuiltup + basementArea) * finishingRates[fiQ];          // finishing whole built-up
-    const mepCost        = (totalBuiltup + basementArea) * mepRates[meQ];                // MEP whole built-up
-    const facadeCost     = plotArea      * facadeRates[faQ];                             // plot-area based
-    const externalCost   = plotArea      * externalRates[exQ];                           // plot-area based
+    const basementCost   = basementArea  * structureRates[stQ] * BASEMENT_MULTIPLIER;
+    const structureCost  = (totalBuiltup * structureRates[stQ]) + basementCost;
+    const finishingCost  = (totalBuiltup + basementArea) * finishingRates[fiQ];
+    const mepCost        = (totalBuiltup + basementArea) * mepRates[meQ];
+    const facadeCost     = plotArea      * facadeRates[faQ];
+    const externalCost   = plotArea      * externalRates[exQ];
 
     // ---- Location factor ----
-    const subtotal      = structureCost + basementCost + finishingCost + mepCost + facadeCost + externalCost;
+    const subtotal      = structureCost + finishingCost + mepCost + facadeCost + externalCost;
     const locMulti      = locationMultiplier[loc];
     const locationAdded = subtotal * (locMulti - 1);
     const afterLocation = subtotal + locationAdded;
 
     // ---- Contingency ----
-    const contingencyAmt = (con === 'Yes') ? afterLocation * 0.05 : 0;
+    const contingencyAmt = (con === 'Yes') ? afterLocation * (CONTINGENCY_RATE / 100) : 0;
     const totalCost      = afterLocation + contingencyAmt;
 
     // ---- Update summary DOM ----
     document.getElementById('structureCostVal').textContent  = fmt(structureCost);
-    document.getElementById('basementCostVal').textContent   = fmt(basementCost);
     document.getElementById('finishingCostVal').textContent  = fmt(finishingCost);
     document.getElementById('mepCostVal').textContent        = fmt(mepCost);
     document.getElementById('facadeCostVal').textContent     = fmt(facadeCost);
@@ -680,9 +697,6 @@ function runCalculation() {
     document.getElementById('locationFactorVal').textContent = fmt(locationAdded);
     document.getElementById('contingencyVal').textContent    = fmt(contingencyAmt);
     document.getElementById('totalCostVal').textContent      = fmt(totalCost);
-
-    // Show / hide basement row in table
-    document.querySelector('.basement-row').style.display = hasBasement ? 'table-row' : 'none';
 
     // Premium area & estimation charge
     const totalArea = totalBuiltup + basementArea;
@@ -692,7 +706,6 @@ function runCalculation() {
     // Show result panel & CTA
     document.getElementById('resultPlaceholder').style.display = 'none';
     document.getElementById('resultPanel').style.display = 'block';
-    document.getElementById('resultPanel').classList.add('result-panel');
     document.getElementById('ctaPanel').style.display = 'block';
 
     // Scroll to result
@@ -707,10 +720,10 @@ function runCalculation() {
         email:               document.getElementById('userEmail').value.trim(),
         phone:               document.getElementById('userPhone').value.trim(),
         project_type:        document.getElementById('projectType').value,
-        plot_length:         len,
-        plot_width:          wid,
+        plot_length:         +document.getElementById('plotLength').value || 0,
+        plot_width:          +document.getElementById('plotWidth').value || 0,
         plot_area:           plotArea,
-        builtup_per_floor:   bpf,
+        builtup_per_floor:   plotArea,   // always same as plot area
         total_floors:        floors,
         total_builtup:       totalBuiltup,
         basement_required:   document.getElementById('basementReq').value,
@@ -740,13 +753,9 @@ function runCalculation() {
     })
     .then(r => r.json())
     .then(data => {
-        if (data.success) {
-            showToast('Estimate saved! Our team will reach you shortly.', 'success');
-        }
+        if (data.success) showToast('Estimate saved! Our team will reach you shortly.', 'success');
     })
-    .catch(() => {
-        // Silently ignore – don't block the user experience
-    })
+    .catch(() => { /* silent fail, user experience not blocked */ })
     .finally(() => {
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-redo"></i> Recalculate';

@@ -33,18 +33,25 @@ class MainController extends Controller
 
     public function calculator()
     {
-        $pricing = CalculatorPricing::firstOrCreate(
-            ['id' => 1],
-            [
-                'structure_basic' => 1100, 'structure_standard' => 1450, 'structure_premium' => 1900,
-                'finishing_basic' => 500,  'finishing_standard' => 800,  'finishing_premium' => 1250,
-                'mep_basic'       => 200,  'mep_standard'       => 350,  'mep_premium'       => 550,
-                'facade_basic'    => 105,  'facade_standard'    => 180,  'facade_premium'    => 280,
-                'external_basic'  => 0,    'external_standard'  => 80,   'external_premium'  => 150,
-                'location_metro'  => 1.10, 'location_urban'     => 1.00, 'location_hill'     => 1.20,
-            ]
-        );
-        return view('frontend.calculator', compact('pricing'));
+        $categories = ['Residential', 'Commercial', 'Industrial'];
+        foreach ($categories as $cat) {
+            CalculatorPricing::firstOrCreate(
+                ['category' => $cat],
+                [
+                    'structure_basic' => 1100, 'structure_standard' => 1400, 'structure_premium' => 1800,
+                    'finishing_basic' => 500,  'finishing_standard' => 800,  'finishing_premium' => 1200,
+                    'mep_basic'       => 200,  'mep_standard'       => 300,  'mep_premium'       => 450,
+                    'facade_basic'    => 150,  'facade_standard'    => 250,  'facade_premium'    => 400,
+                    'external_basic'  => 150,  'external_standard'  => 250,  'external_premium'  => 400,
+                    'location_metro'  => 1.10, 'location_urban'     => 1.00, 'location_hill'     => 1.20,
+                    'basement_multiplier' => 1.50,
+                    'contingency_rate'   => 5.00,
+                ]
+            );
+        }
+
+        $allPricings = CalculatorPricing::all()->keyBy('category');
+        return view('frontend.calculator', compact('allPricings'));
     }
 
     public function about_us()

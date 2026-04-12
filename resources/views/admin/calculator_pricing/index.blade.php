@@ -56,14 +56,36 @@
             <div class="col-12">
                 <h4 class="mb-0">
                     <i class="fas fa-calculator mr-2 text-primary"></i>
-                    Calculator Pricing Manager
+                    Calculator Pricing Manager - <span class="text-primary">{{ $selectedCategory }}</span>
                 </h4>
-                <small class="text-muted">Manage per sqft rates used in the frontend cost calculator.</small>
+                <small class="text-muted">Manage per sqft rates for <strong>{{ $selectedCategory }}</strong> projects.</small>
+            </div>
+        </div>
+        {{-- Category Selection Tabs --}}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card card-primary card-outline card-outline-tabs">
+                    <div class="card-header p-0 border-bottom-0">
+                        <ul class="nav nav-tabs" id="categoryTab" role="tablist">
+                            @foreach($categories as $cat)
+                            <li class="nav-item">
+                                <a class="nav-link {{ $selectedCategory == $cat ? 'active' : '' }}" 
+                                   href="{{ route('calculator-pricing.index', ['category' => $cat]) }}" 
+                                   role="tab">
+                                    <i class="fas {{ $cat == 'Residential' ? 'fa-home' : ($cat == 'Commercial' ? 'fa-building' : 'fa-industry') }} mr-1"></i>
+                                    {{ $cat }}
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
         <form action="{{ route('calculator-pricing.update') }}" method="POST">
             @csrf
+            <input type="hidden" name="category" value="{{ $selectedCategory }}">
 
             <div class="row">
 
@@ -302,6 +324,40 @@
                                            step="0.05" min="1" max="5" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">× rate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- ========================
+                     CONTINGENCY RATE
+                ========================= --}}
+                <div class="col-md-6">
+                    <div class="card card-outline card-info pricing-card mb-4" style="border-left-color:#17a2b8;">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-shield-alt mr-2"></i>Contingency (Extra Buffer)
+                                <small class="text-muted font-weight-normal">(%)</small>
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="font-weight-500">
+                                    Contingency Percentage
+                                    <small class="text-muted d-block mt-1">e.g. <strong>5.00</strong> means 5% of the total cost will be added as a buffer.</small>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-percent"></i></span>
+                                    </div>
+                                    <input type="number" name="contingency_rate"
+                                           class="form-control"
+                                           value="{{ old('contingency_rate', $pricing->contingency_rate) }}"
+                                           step="0.1" min="0" max="50" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">%</span>
                                     </div>
                                 </div>
                             </div>

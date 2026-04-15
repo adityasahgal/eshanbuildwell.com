@@ -95,7 +95,7 @@ $genSetting = \App\Models\Setting::first();
               <h5><a href="{{ url('blog/'.$related_blog->slug) }}">{{ $related_blog->name }}</a></h5>
               <div class="blog-meta"><span><i class="bi bi-calendar3"></i>{{ date('d F Y', strtotime($related_blog->created_at)) }}</span><span><i class="bi bi-person"></i>Admin</span></div>
               <p>{{ $related_blog->short_description ?? Str::limit(strip_tags($related_blog->description), 80) }}</p>
-              <a href="{{ url('blog/'.$related_blog->slug) }}" class="btn-read">Read More</a>
+              <a href="{{ url('blog/'.$related_blog->slug) }}" class="btn-read">Get in touch</a>
             </div>
           </div>
         </div>

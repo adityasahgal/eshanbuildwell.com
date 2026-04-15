@@ -16,7 +16,7 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 
 <div class="trust-bar"><div class="container"><div class="d-flex align-items-center justify-content-between flex-wrap gap-2"><div class="trust-item"><i class="bi bi-clipboard-check"></i> Accurate BOQ Preparation</div><div class="trust-sep d-none d-md-block"></div><div class="trust-item"><i class="bi bi-currency-rupee"></i> Transparent Pricing</div><div class="trust-sep d-none d-md-block"></div><div class="trust-item"><i class="bi bi-clock"></i> On-Time Delivery</div><div class="trust-sep d-none d-md-block"></div><div class="trust-item"><i class="bi bi-star"></i> Quality Workmanship</div><div class="trust-sep d-none d-md-block"></div><div class="trust-item"><i class="bi bi-trophy"></i> Proven Results</div></div></div></div>
 
-<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Services</li></ol></nav></div></div>
+<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Services</li></ol></nav></div></div>
 
 <!-- INTRO -->
 <section class="py-5">
@@ -50,12 +50,12 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
       <div class="sec-line center"><span class="sec-sub">Comprehensive construction solutions tailored to your needs</span></div>
     </div>
     <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1541888081-0113f8d29864?w=700&q=80" alt="Building Construction"/><span class="svc-badge">Construction</span></div><div class="svc-body"><h4>Building Construction</h4><p>Complete construction services for residential, commercial, and industrial projects with proper planning, discipline, and cost control.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Residential, Commercial &amp; Industrial</li><li><i class="bi bi-check-circle-fill"></i>Turnkey Construction Solutions</li><li><i class="bi bi-check-circle-fill"></i>Strong Quality Control</li><li><i class="bi bi-check-circle-fill"></i>Experienced Site Supervision</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="PMC"/><span class="svc-badge">PMC</span></div><div class="svc-body"><h4>Project Management Consultancy</h4><p>Ensure your project is executed professionally with proper coordination, monitoring, and cost control at every stage.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Project Planning &amp; Scheduling</li><li><i class="bi bi-check-circle-fill"></i>Contractor &amp; Vendor Coordination</li><li><i class="bi bi-check-circle-fill"></i>Quality Assurance &amp; Inspection</li><li><i class="bi bi-check-circle-fill"></i>Cost Monitoring &amp; Budget Control</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Turnkey"/><span class="svc-badge">Turnkey</span></div><div class="svc-body"><h4>Turnkey Construction</h4><p>A complete solution from design to final handover under one contract, ensuring hassle-free project execution.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Design + Planning + Execution</li><li><i class="bi bi-check-circle-fill"></i>Material &amp; Labour Management</li><li><i class="bi bi-check-circle-fill"></i>Complete Construction Responsibility</li><li><i class="bi bi-check-circle-fill"></i>Final Ready-to-Use Delivery</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=80" alt="Estimation"/><span class="svc-badge">Estimation</span></div><div class="svc-body"><h4>Estimation &amp; Costing</h4><p>Accurate estimation is the foundation of success. We provide detailed BOQ and cost planning to ensure financial clarity.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>BOQ Preparation</li><li><i class="bi bi-check-circle-fill"></i>Material Rate Analysis</li><li><i class="bi bi-check-circle-fill"></i>Labour Cost Estimation</li><li><i class="bi bi-check-circle-fill"></i>Better Budget Planning</li></ul><a href="calculator.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80" alt="Architecture"/><span class="svc-badge">Architecture</span></div><div class="svc-body"><h4>Architecture &amp; Structural Design</h4><p>Smart and practical design solutions combining beautiful aesthetics with structural safety and functionality.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Architectural Layout Planning</li><li><i class="bi bi-check-circle-fill"></i>2D &amp; 3D Design</li><li><i class="bi bi-check-circle-fill"></i>Structural Design &amp; Analysis</li><li><i class="bi bi-check-circle-fill"></i>Working Drawings</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Landowner Collaboration"/><span class="svc-badge">Collaboration</span></div><div class="svc-body"><h4>Landowner Collaboration Service</h4><p>We partner with landowners to develop projects through transparent agreements and professional execution.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Joint Development Projects</li><li><i class="bi bi-check-circle-fill"></i>Profit Sharing Models</li><li><i class="bi bi-check-circle-fill"></i>Project Planning &amp; Execution</li><li><i class="bi bi-check-circle-fill"></i>Legal &amp; Liaison Support</li></ul><a href="contact.blade.php" class="btn-read">Read More <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1541888081-0113f8d29864?w=700&q=80" alt="Building Construction"/><span class="svc-badge">Construction</span></div><div class="svc-body"><h4>Building Construction</h4><p>Complete construction services for residential, commercial, and industrial projects with proper planning, discipline, and cost control.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Residential, Commercial &amp; Industrial</li><li><i class="bi bi-check-circle-fill"></i>Turnkey Construction Solutions</li><li><i class="bi bi-check-circle-fill"></i>Strong Quality Control</li><li><i class="bi bi-check-circle-fill"></i>Experienced Site Supervision</li></ul><a href="{{ url('contact-us') }}" class="btn-read">Get in touch <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80" alt="PMC"/><span class="svc-badge">PMC</span></div><div class="svc-body"><h4>Project Management Consultancy</h4><p>Ensure your project is executed professionally with proper coordination, monitoring, and cost control at every stage.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Project Planning &amp; Scheduling</li><li><i class="bi bi-check-circle-fill"></i>Contractor &amp; Vendor Coordination</li><li><i class="bi bi-check-circle-fill"></i>Quality Assurance &amp; Inspection</li><li><i class="bi bi-check-circle-fill"></i>Cost Monitoring &amp; Budget Control</li></ul><a href="{{ url('contact-us') }}" class="btn-read">Get in touch <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Turnkey"/><span class="svc-badge">Turnkey</span></div><div class="svc-body"><h4>Turnkey Construction</h4><p>A complete solution from design to final handover under one contract, ensuring hassle-free project execution.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Design + Planning + Execution</li><li><i class="bi bi-check-circle-fill"></i>Material &amp; Labour Management</li><li><i class="bi bi-check-circle-fill"></i>Complete Construction Responsibility</li><li><i class="bi bi-check-circle-fill"></i>Final Ready-to-Use Delivery</li></ul><a href="{{ url('contact-us') }}" class="btn-read">Get in touch <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=80" alt="Estimation"/><span class="svc-badge">Estimation</span></div><div class="svc-body"><h4>Estimation &amp; Costing</h4><p>Accurate estimation is the foundation of success. We provide detailed BOQ and cost planning to ensure financial clarity.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>BOQ Preparation</li><li><i class="bi bi-check-circle-fill"></i>Material Rate Analysis</li><li><i class="bi bi-check-circle-fill"></i>Labour Cost Estimation</li><li><i class="bi bi-check-circle-fill"></i>Better Budget Planning</li></ul><a href="{{ url('calculator') }}" class="btn-read">Get in touch <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80" alt="Architecture"/><span class="svc-badge">Architecture</span></div><div class="svc-body"><h4>Architecture &amp; Structural Design</h4><p>Smart and practical design solutions combining beautiful aesthetics with structural safety and functionality.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Architectural Layout Planning</li><li><i class="bi bi-check-circle-fill"></i>2D &amp; 3D Design</li><li><i class="bi bi-check-circle-fill"></i>Structural Design &amp; Analysis</li><li><i class="bi bi-check-circle-fill"></i>Working Drawings</li></ul><a href="{{ url('contact-us') }}" class="btn-read">Get in touch <i class="bi bi-arrow-right"></i></a></div></div></div>
+      <div class="col-12 col-md-6 col-lg-4"><div class="svc-card"><div class="svc-img-wrap"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Landowner Collaboration"/><span class="svc-badge">Collaboration</span></div><div class="svc-body"><h4>Landowner Collaboration Service</h4><p>We partner with landowners to develop projects through transparent agreements and professional execution.</p><ul class="feat-list"><li><i class="bi bi-check-circle-fill"></i>Joint Development Projects</li><li><i class="bi bi-check-circle-fill"></i>Profit Sharing Models</li><li><i class="bi bi-check-circle-fill"></i>Project Planning &amp; Execution</li><li><i class="bi bi-check-circle-fill"></i>Legal &amp; Liaison Support</li></ul><a href="{{ url('contact-us') }}" class="btn-read">Get in touch <i class="bi bi-arrow-right"></i></a></div></div></div>
     </div>
   </div>
 </section>
@@ -115,23 +115,50 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
   </div>
 </section>
 
-<!-- WHY CHOOSE -->
-<section class="why-sec">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-12 col-lg-5"><img class="why-img" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Why Choose Us"/></div>
-      <div class="col-12 col-lg-7">
-        <p class="sec-eyebrow">Why Us</p>
-        <h2 class="sec-title mb-1">Why Choose Eshan Buildwell?</h2>
-        <div class="sec-line mb-4"></div>
-        <div class="why-point"><div class="why-icon"><i class="bi bi-people-fill"></i></div><div><h5>Experienced Team</h5><p>Skilled engineers, architects &amp; project managers ensuring quality execution.</p></div></div>
-        <div class="why-point"><div class="why-icon"><i class="bi bi-patch-check-fill"></i></div><div><h5>Customized Solutions</h5><p>Every project is unique — we tailor our approach to meet your specific requirements.</p></div></div>
-        <div class="why-point"><div class="why-icon"><i class="bi bi-currency-rupee"></i></div><div><h5>Competitive Pricing</h5><p>Transparent costing with no hidden charges and value-engineered solutions.</p></div></div>
-        <div class="why-point"><div class="why-icon"><i class="bi bi-star-fill"></i></div><div><h5>Client Satisfaction</h5><p>Proven track record across 200+ completed projects. Your satisfaction is our benchmark.</p></div></div>
-        <a href="about.html" class="btn-read mt-2">Learn More About Us <i class="bi bi-chevron-right"></i></a>
-      </div>
+<!-- WHY CHOOSE - SERVICES PAGE (Unique content) -->
+<section class="py-5" style="background:var(--gray-bg)">
+    <div class="container">
+        <p class="sec-title text-center">What Makes Our Services Different?</p>
+        <div class="sec-line center mb-4"><span class="sec-sub">Built on process, not just promises</span></div>
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="bi bi-diagram-2-fill"></i></div>
+                    <div>
+                        <h5>Structured Project Process</h5>
+                        <p>From consultation to handover, every project follows a defined 6-stage process — ensuring nothing is missed and every stakeholder is aligned at each milestone.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="bi bi-file-earmark-ruled-fill"></i></div>
+                    <div>
+                        <h5>BOQ-Backed Service Delivery</h5>
+                        <p>Every service we provide — from construction to PMC — is backed by a detailed Bill of Quantities so clients understand exactly what they are paying for.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="bi bi-telephone-inbound-fill"></i></div>
+                    <div>
+                        <h5>Dedicated Service Support</h5>
+                        <p>Each client gets a dedicated project contact who is reachable throughout the project lifecycle for queries, updates, and issue resolution.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="feat-card">
+                    <div class="feat-icon"><i class="bi bi-arrow-repeat"></i></div>
+                    <div>
+                        <h5>Post-Completion Follow-Up</h5>
+                        <p>Our relationship doesn't end at handover. We conduct post-completion reviews and remain available for any structural or maintenance guidance needed afterwards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- STATS -->
@@ -182,8 +209,8 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
     <h2>Ready to Build Your Dream Project?</h2>
     <p>Get a free consultation and accurate estimate from our expert team today.</p>
     <div class="d-flex flex-wrap justify-content-center gap-3">
-      <a href="calculator.html" class="btn-cta-lg"><i class="bi bi-calculator"></i> Get Your Free Estimate</a>
-      <a href="contact.html" class="btn-cta-outline"><i class="bi bi-telephone-fill"></i> Contact Us</a>
+      <a href="{{ url('calculator') }}" class="btn-cta-lg"><i class="bi bi-calculator"></i> Get Your Free Estimate</a>
+      <a href="{{ url('contact-us') }}" class="btn-cta-outline"><i class="bi bi-telephone-fill"></i> Contact Us</a>
     </div>
   </div>
 </section>

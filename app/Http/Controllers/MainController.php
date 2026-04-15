@@ -26,6 +26,11 @@ class MainController extends Controller
         return view('frontend.services');
     }
 
+    public function bim_training()
+    {
+        return view('frontend.bim-training');
+    }
+
     public function projects()
     {
         return view('frontend.projects');

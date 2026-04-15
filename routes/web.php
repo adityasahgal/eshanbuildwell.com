@@ -27,6 +27,7 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
     Route::get('/about-us', [MainController::class, 'about_us']);
     Route::get('/privacy-policy', [MainController::class, 'privacy_policy']);
     Route::get('/services', [MainController::class, 'services']);
+    Route::get('/bim-training', [MainController::class, 'bim_training']);
     Route::get('/projects', [MainController::class, 'projects']);
     Route::get('/calculator', [MainController::class, 'calculator']);
     Route::post('/calculator/enquiry', [MainController::class, 'storeCalculatorEnquiry'])->name('calculator.enquiry.store');

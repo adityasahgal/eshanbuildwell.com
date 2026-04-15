@@ -11,7 +11,7 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 
 @section('content')
 <section class="hero-banner"><div class="container"><div class="hero-content"><h1>Our Featured Projects</h1><div class="hero-divider"></div><p>A Showcase of Our Expertise and Quality Work</p></div></div></section>
-<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Projects</li></ol></nav></div></div>
+<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Projects</li></ol></nav></div></div>
 
 <!-- FEATURED -->
 <section class="py-5 bg-white">
@@ -45,7 +45,7 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 <!-- GALLERY -->
 <section class="py-5" style="background:var(--gray-bg)" id="gallery">
   <div class="container">
-    <p class="sec-title text-center">🖼️ Project Gallery</p>
+    <p class="sec-title text-center">Project Gallery</p>
     <div class="sec-line center mb-4"></div>
     <div class="filter-btns d-flex flex-wrap gap-2 justify-content-center mb-5">
       <button class="btn-filter active" data-filter="all">All Projects</button>
@@ -168,7 +168,7 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 <section class="cta-strip">
   <div class="container">
     <h2>Ready to Build Your Dream Project?</h2><br>
-    <a href="calculator.blade.php" class="btn-cta-lg">Get Your Free Estimate</a>
+    <a href="{{ url('calculator') }}" class="btn-cta-lg">Get Your Free Estimate</a>
   </div>
 </section>
 

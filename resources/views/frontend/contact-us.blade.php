@@ -12,7 +12,7 @@ $keywords = "Contact Eshan Buildwell, construction services, building projects, 
 @section('meta_keywords'){{ $keywords }}@stop
 @section('content')
 <section class="hero-banner"><div class="container"><div class="hero-content"><h1>Contact Us</h1><div class="hero-divider"></div><p>Get in Touch with Us Today!</p></div></div></section>
-<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Contact Us</li></ol></nav></div></div>
+<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Contact Us</li></ol></nav></div></div>
 
 <section class="py-5 bg-white">
   <div class="container">

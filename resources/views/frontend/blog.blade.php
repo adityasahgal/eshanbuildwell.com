@@ -16,7 +16,7 @@ $keywords = "Eshan Buildwell blog, latest updates, construction tips, Eshan Buil
   <div class="search-bar mt-3"><input type="text" placeholder="Search blog posts..." aria-label="Search"/><button type="button"><i class="bi bi-search"></i></button></div>
   </div></div>
 </section>
-<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active">Blog</li></ol></nav></div></div>
+<div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Blog</li></ol></nav></div></div>
 
 <section class="py-5" style="background:var(--gray-bg)">
   <div class="container">
@@ -35,8 +35,8 @@ $keywords = "Eshan Buildwell blog, latest updates, construction tips, Eshan Buil
               <span><i class="bi bi-calendar3"></i>{{ date('d F Y', strtotime($blog->created_at)) }}</span>
               <span><i class="bi bi-person"></i>Admin</span>
             </div>
-            <p>{{ $blog->short_description ?? \Illuminate\Support\Str::limit(strip_tags($blog->description), 80) }}</p>
-            <a href="{{ url('blog/'.$blog->slug) }}" class="btn-read">Read More</a>
+            <p class="text-muted small mb-3">{{ Str::limit($blog->short_description, 100) }}</p>
+            <a href="{{ url('blog/'.$blog->slug) }}" class="btn-read">Get in touch</a>
           </div>
         </div>
       </div>
@@ -72,6 +72,8 @@ $keywords = "Eshan Buildwell blog, latest updates, construction tips, Eshan Buil
     </div>
   </div>
 </section>
-<section class="cta-strip"><div class="container"><h2>Ready to Build Your Dream Project?</h2><p>Contact us for a free consultation and get an accurate estimate.</p><a href="tel:{{ $genSetting['phone'] ?? '+919876543210' }}" class="btn-cta-lg"><i class="bi bi-telephone-fill"></i> Call Us: {{ $genSetting['phone'] ?? '+91 9876543210' }}</a></div></section>
+<section class="cta-strip"><div class="container">    <h2>Ready to Build Your Dream Project?</h2><br>
+    <a href="{{ url('calculator') }}" class="btn-cta-lg">Get Your Free Estimate</a>
+  </div><a href="tel:{{ $genSetting['phone'] ?? '+919876543210' }}" class="btn-cta-lg"><i class="bi bi-telephone-fill"></i> Call Us: {{ $genSetting['phone'] ?? '+91 9876543210' }}</a></div></section>
 
 @endsection

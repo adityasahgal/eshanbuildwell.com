@@ -102,90 +102,90 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
 
 <!-- WHY CHOOSE - ABOUT US (Different from Home Page) -->
 <style>
-.cred-section {
-    background: var(--navy);
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.cred-section::after {
-    content: '';
-    position: absolute;
-    bottom: -60px;
-    right: -60px;
-    width: 300px;
-    height: 300px;
-    border: 60px solid rgba(232, 119, 34, 0.08);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.cred-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 40px;
-}
-
-@media(max-width:991px) {
-    .cred-row {
-        grid-template-columns: repeat(2, 1fr);
+    .cred-section {
+        background: var(--navy);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
     }
-}
 
-@media(max-width:575px) {
-    .cred-row {
-        grid-template-columns: 1fr;
+    .cred-section::after {
+        content: '';
+        position: absolute;
+        bottom: -60px;
+        right: -60px;
+        width: 300px;
+        height: 300px;
+        border: 60px solid rgba(232, 119, 34, 0.08);
+        border-radius: 50%;
+        pointer-events: none;
     }
-}
 
-.cred-item {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 36px 28px;
-    transition: background 0.3s;
-}
+    .cred-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-top: 40px;
+    }
 
-.cred-item:hover {
-    background: rgba(255, 255, 255, 0.07);
-}
+    @media(max-width:991px) {
+        .cred-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 
-.cred-item-icon {
-    font-size: 2rem;
-    color: var(--orange);
-    margin-bottom: 14px;
-}
+    @media(max-width:575px) {
+        .cred-row {
+            grid-template-columns: 1fr;
+        }
+    }
 
-.cred-item h5 {
-    color: #fff;
-    font-weight: 700;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-}
+    .cred-item {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 36px 28px;
+        transition: background 0.3s;
+    }
 
-.cred-item p {
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 0.88rem;
-    line-height: 1.7;
-    margin: 0;
-}
+    .cred-item:hover {
+        background: rgba(255, 255, 255, 0.07);
+    }
 
-.cred-item .cred-tag {
-    display: inline-block;
-    background: rgba(232, 119, 34, 0.18);
-    color: var(--orange);
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-}
+    .cred-item-icon {
+        font-size: 2rem;
+        color: var(--orange);
+        margin-bottom: 14px;
+    }
+
+    .cred-item h5 {
+        color: #fff;
+        font-weight: 700;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .cred-item p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.88rem;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .cred-item .cred-tag {
+        display: inline-block;
+        background: rgba(232, 119, 34, 0.18);
+        color: var(--orange);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+    }
 </style>
 <section class="cred-section">
     <div class="container">
@@ -241,153 +241,153 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
 
 <!-- OUR TEAM - PREMIUM -->
 <style>
-.team-section {
-    padding: 90px 0;
-    background: #f8f9fc;
-}
+    .team-section {
+        padding: 90px 0;
+        background: #f8f9fc;
+    }
 
-.team-pro-card {
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(26, 42, 74, 0.07);
-    transition: all 0.4s ease;
-    border: 1px solid #eef0f8;
-    height: 100%;
-}
+    .team-pro-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(26, 42, 74, 0.07);
+        transition: all 0.4s ease;
+        border: 1px solid #eef0f8;
+        height: 100%;
+    }
 
-.team-pro-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 60px rgba(26, 42, 74, 0.15);
-    border-color: transparent;
-}
+    .team-pro-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 60px rgba(26, 42, 74, 0.15);
+        border-color: transparent;
+    }
 
-.team-photo-wrap {
-    position: relative;
-    overflow: hidden;
-    height: 260px;
-    background: linear-gradient(135deg, #e8eaf8, #d5d8f0);
-}
+    .team-photo-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 260px;
+        background: linear-gradient(135deg, #e8eaf8, #d5d8f0);
+    }
 
-.team-photo-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.5s ease;
-}
+    .team-photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transition: transform 0.5s ease;
+    }
 
-.team-pro-card:hover .team-photo-wrap img {
-    transform: scale(1.06);
-}
+    .team-pro-card:hover .team-photo-wrap img {
+        transform: scale(1.06);
+    }
 
-/* Ribbon tag */
-.team-ribbon {
-    position: absolute;
-    top: 16px;
-    left: -2px;
-    background: var(--orange);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 5px 14px 5px 10px;
-    border-radius: 0 20px 20px 0;
-    box-shadow: 0 4px 12px rgba(232, 119, 34, 0.4);
-}
+    /* Ribbon tag */
+    .team-ribbon {
+        position: absolute;
+        top: 16px;
+        left: -2px;
+        background: var(--orange);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 5px 14px 5px 10px;
+        border-radius: 0 20px 20px 0;
+        box-shadow: 0 4px 12px rgba(232, 119, 34, 0.4);
+    }
 
-/* Social overlay */
-.team-social-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(26, 42, 74, 0.85) 0%, transparent 50%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 18px;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    gap: 10px;
-}
+    /* Social overlay */
+    .team-social-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(26, 42, 74, 0.85) 0%, transparent 50%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 18px;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        gap: 10px;
+    }
 
-.team-pro-card:hover .team-social-overlay {
-    opacity: 1;
-}
+    .team-pro-card:hover .team-social-overlay {
+        opacity: 1;
+    }
 
-.team-social-overlay a {
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: background 0.3s;
-}
+    .team-social-overlay a {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background 0.3s;
+    }
 
-.team-social-overlay a:hover {
-    background: var(--orange);
-    border-color: var(--orange);
-}
+    .team-social-overlay a:hover {
+        background: var(--orange);
+        border-color: var(--orange);
+    }
 
-/* Body */
-.team-pro-body {
-    padding: 22px 22px 24px;
-}
+    /* Body */
+    .team-pro-body {
+        padding: 22px 22px 24px;
+    }
 
-.team-pro-body h5 {
-    color: var(--navy);
-    font-weight: 800;
-    font-size: 1.15rem;
-    margin-bottom: 3px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
-}
+    .team-pro-body h5 {
+        color: var(--navy);
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-bottom: 3px;
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 1.3rem;
+    }
 
-.team-role {
-    color: var(--orange);
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 10px;
-}
+    .team-role {
+        color: var(--orange);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        margin-bottom: 10px;
+    }
 
-.team-divider {
-    height: 2px;
-    background: linear-gradient(to right, var(--orange), transparent);
-    margin-bottom: 12px;
-    border-radius: 2px;
-}
+    .team-divider {
+        height: 2px;
+        background: linear-gradient(to right, var(--orange), transparent);
+        margin-bottom: 12px;
+        border-radius: 2px;
+    }
 
-.team-bio {
-    color: #6b7280;
-    font-size: 0.875rem;
-    line-height: 1.7;
-    margin-bottom: 14px;
-}
+    .team-bio {
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.7;
+        margin-bottom: 14px;
+    }
 
-.team-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
+    .team-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
 
-.team-skill-tag {
-    background: rgba(26, 42, 74, 0.06);
-    color: var(--navy);
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid rgba(26, 42, 74, 0.1);
-}
+    .team-skill-tag {
+        background: rgba(26, 42, 74, 0.06);
+        color: var(--navy);
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(26, 42, 74, 0.1);
+    }
 </style>
 <section class="team-section">
     <div class="container">
@@ -408,10 +408,10 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
                         </div>
                     </div>
                     <div class="team-pro-body">
-                        <h5>Aditya Sahgal</h5>
+                        <h5>Gagandeep rajput</h5>
                         <div class="team-role">Founder & CEO</div>
                         <div class="team-divider"></div>
-                        <p class="team-bio">With 15+ years of hands-on experience in construction management, Aditya
+                        <p class="team-bio">With 15+ years of hands-on experience in construction management, Gagandeep
                             leads the company's strategic direction and ensures every project reflects the highest
                             standards of quality and transparency.</p>
                         <div class="team-skills">
@@ -428,8 +428,7 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
                 <div class="team-pro-card">
                     <div class="team-photo-wrap" style="background: linear-gradient(135deg, #f0e8d8, #e8d8c0)">
                         <span class="team-ribbon">Engineering</span>
-                        <img src="https://ui-avatars.com/api/?name=Ravi+Kumar&background=1a2a4a&color=fff&size=400&font-size=0.35"
-                            alt="Ravi Kumar" style="object-fit:cover">
+                        <img src="{{ asset('assets/images/t2.jpeg') }}" alt="Ravi Kumar" style="object-fit:cover">
                         <div class="team-social-overlay">
                             <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         </div>
@@ -455,8 +454,7 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
                 <div class="team-pro-card">
                     <div class="team-photo-wrap" style="background: linear-gradient(135deg, #d8e8f0, #c0d5e8)">
                         <span class="team-ribbon">Management</span>
-                        <img src="https://ui-avatars.com/api/?name=Priya+Singh&background=e87722&color=fff&size=400&font-size=0.35"
-                            alt="Priya Singh">
+                        <img src="{{ asset('assets/images/t1.jpeg') }}" alt="Priya Singh">
                         <div class="team-social-overlay">
                             <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         </div>
@@ -481,18 +479,17 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
                 <div class="team-pro-card">
                     <div class="team-photo-wrap" style="background: linear-gradient(135deg, #e8f0d8, #d0e8c0)">
                         <span class="team-ribbon">Architecture</span>
-                        <img src="https://ui-avatars.com/api/?name=Amit+Sharma&background=0D8ABC&color=fff&size=400&font-size=0.35"
-                            alt="Amit Sharma">
+                        <img src="{{ asset('assets/images/Architect.png') }}" alt="Amit Sharma">
                         <div class="team-social-overlay">
                             <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
                     <div class="team-pro-body">
-                        <h5>Amit Sharma</h5>
+                        <h5>Neha Gupta</h5>
                         <div class="team-role">Lead Architect</div>
                         <div class="team-divider"></div>
-                        <p class="team-bio">Amit blends aesthetic design with functional planning. From concept layouts
-                            to working drawings, he ensures every design is buildable, efficient, and visually
+                        <p class="team-bio">Neha blends aesthetic design with functional planning. From concept layouts
+                            to working drawings, she ensures every design is buildable, efficient, and visually
                             compelling.</p>
                         <div class="team-skills">
                             <span class="team-skill-tag">Architectural Design</span>
@@ -503,58 +500,7 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
                 </div>
             </div>
 
-            <!-- BIM Expert -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="team-pro-card">
-                    <div class="team-photo-wrap" style="background: linear-gradient(135deg, #ede8f8, #d8d0f0)">
-                        <span class="team-ribbon">Technology</span>
-                        <img src="https://ui-avatars.com/api/?name=Neha+Gupta&background=6c4ab1&color=fff&size=400&font-size=0.35"
-                            alt="Neha Gupta">
-                        <div class="team-social-overlay">
-                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team-pro-body">
-                        <h5>Neha Gupta</h5>
-                        <div class="team-role">BIM Specialist</div>
-                        <div class="team-divider"></div>
-                        <p class="team-bio">Neha leads our BIM workflows using Revit and Navisworks, enabling accurate
-                            clash detection, 4D scheduling, and digital project coordination before construction begins.
-                        </p>
-                        <div class="team-skills">
-                            <span class="team-skill-tag">Revit</span>
-                            <span class="team-skill-tag">Navisworks</span>
-                            <span class="team-skill-tag">BIM Coordination</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Estimator -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="team-pro-card">
-                    <div class="team-photo-wrap" style="background: linear-gradient(135deg, #f8e8e8, #f0d0d0)">
-                        <span class="team-ribbon">Estimation</span>
-                        <img src="https://ui-avatars.com/api/?name=Rohit+Verma&background=c0392b&color=fff&size=400&font-size=0.35"
-                            alt="Rohit Verma">
-                        <div class="team-social-overlay">
-                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team-pro-body">
-                        <h5>Rohit Verma</h5>
-                        <div class="team-role">Estimation & Costing Expert</div>
-                        <div class="team-divider"></div>
-                        <p class="team-bio">Rohit prepares precise BOQs and rate analyses for all project categories.
-                            His cost forecasts help clients plan budgets with full transparency and confidence.</p>
-                        <div class="team-skills">
-                            <span class="team-skill-tag">BOQ Preparation</span>
-                            <span class="team-skill-tag">Rate Analysis</span>
-                            <span class="team-skill-tag">Cost Planning</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>

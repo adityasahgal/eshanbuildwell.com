@@ -31,6 +31,7 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
     Route::get('/projects', [MainController::class, 'projects']);
     Route::get('/calculator', [MainController::class, 'calculator']);
     Route::post('/calculator/enquiry', [MainController::class, 'storeCalculatorEnquiry'])->name('calculator.enquiry.store');
+    Route::post('/calculator/payment/confirm', [MainController::class, 'confirmPaymentScreenshot'])->name('calculator.payment.confirm');
     Route::get('/contact-us', [MainController::class, 'contact_us']);
     Route::post('showEnquiryModal', [MainController::class, 'showEnquiryModal']);
     Route::post('storeEnquiry', [MainController::class, 'storeEnquiry']);

@@ -43,12 +43,24 @@ class MainController extends Controller
             CalculatorPricing::firstOrCreate(
                 ['category' => $cat],
                 [
-                    'structure_basic' => 1100, 'structure_standard' => 1400, 'structure_premium' => 1800,
-                    'finishing_basic' => 500,  'finishing_standard' => 800,  'finishing_premium' => 1200,
-                    'mep_basic'       => 200,  'mep_standard'       => 300,  'mep_premium'       => 450,
-                    'facade_basic'    => 150,  'facade_standard'    => 250,  'facade_premium'    => 400,
-                    'external_basic'  => 150,  'external_standard'  => 250,  'external_premium'  => 400,
-                    'location_metro'  => 1.10, 'location_urban'     => 1.00, 'location_hill'     => 1.20,
+                    'structure_basic' => 1100,
+                    'structure_standard' => 1400,
+                    'structure_premium' => 1800,
+                    'finishing_basic' => 500,
+                    'finishing_standard' => 800,
+                    'finishing_premium' => 1200,
+                    'mep_basic'       => 200,
+                    'mep_standard'       => 300,
+                    'mep_premium'       => 450,
+                    'facade_basic'    => 150,
+                    'facade_standard'    => 250,
+                    'facade_premium'    => 400,
+                    'external_basic'  => 150,
+                    'external_standard'  => 250,
+                    'external_premium'  => 400,
+                    'location_metro'  => 1.10,
+                    'location_urban'     => 1.00,
+                    'location_hill'     => 1.20,
                     'basement_multiplier' => 1.50,
                     'contingency_rate'   => 5.00,
                 ]
@@ -56,6 +68,7 @@ class MainController extends Controller
         }
 
         $allPricings = CalculatorPricing::all()->keyBy('category');
+        // dd($allPricings);
         return view('frontend.calculator', compact('allPricings'));
     }
 
@@ -143,6 +156,28 @@ class MainController extends Controller
         }
 
         return abort(404);
+    }
+
+    public function confirmPaymentScreenshot(Request $request)
+    {
+        $request->validate([
+            'screenshot'    => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'enquiry_name'  => 'required|string|max:255',
+            'enquiry_phone' => 'required|string|max:20',
+        ]);
+
+        $path = $request->file('screenshot')->store('payment-screenshots', 'public');
+
+        CalculatorEnquiry::where('phone', $request->enquiry_phone)
+            ->where('name', $request->enquiry_name)
+            ->latest()
+            ->first()
+            ?->update([
+                'payment_screenshot' => $path,
+                'payment_status'     => 'confirmed',
+            ]);
+
+        return response()->json(['success' => true, 'path' => $path]);
     }
 
     public function storeCalculatorEnquiry(Request $request)
@@ -283,10 +318,9 @@ class MainController extends Controller
     {
         $secret = config('captcha.secret_key');
         if (!$secret) {
-            // Fallback to env if config not set correctly
             $secret = env('GOOGLE_CAPTCHA_SECRET_KEY');
         }
-        
+
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => $secret,
             'response' => $token,

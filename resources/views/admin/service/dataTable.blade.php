@@ -1,16 +1,15 @@
-<table class="table table-hover table-sm tabel-border">
-    <thead>
+<table class="table table-hover table-sm table-bordered">
+    <thead class="thead-dark">
         <tr>
             <th>#</th>
-            <th>Category</th>
-            <th>Subcategory</th>
+            <th>Thumbnail</th>
             <th>Service Name</th>
-            <th>Thumbnail Images</th>
-            <th>Update Date</th>
-            <th>Update By</th>
+            <th>Badge</th>
+            <th>Order</th>
+            <th>Updated</th>
+            <th>By</th>
             @can('service-publish')
-            <th>Featured</th>
-            <th>Top</th>
+            <th>Show on Page</th>
             <th>Status</th>
             @endcan
             @canany(['service-edit','service-delete'])
@@ -19,54 +18,47 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($data as $key => $row)
+        @forelse($data as $key => $row)
         <tr>
-            <th>{{ ($key+1) + ($data->currentPage() - 1)*$data->perPage() }}</th>
-            <td>{{ $row->categories->name }}</td>
+            <td>{{ ($key + 1) + ($data->currentPage() - 1) * $data->perPage() }}</td>
             <td>
-                @if(!empty($row->subcategories->name))
-                {{ $row->subcategories->name }}
+                @if(!empty($row->thumbnail_img) && Storage::disk('public')->exists($row->thumbnail_img))
+                <img src="{{ url('storage/' . $row->thumbnail_img) }}" alt="{{ $row->name }}" style="width:80px;height:50px;object-fit:cover;border-radius:4px;">
+                @else
+                <span class="badge badge-secondary">No Image</span>
                 @endif
             </td>
-            <td>{{ $row->name }}</td>
-            <td>
-                @if(file_exists('storage/' . $row->thumbnail_img) && !empty($row->thumbnail_img))
-                <img src="{{ url('storage/'.$row->thumbnail_img) }}" alt="{{ $row->image_alt }}" style="width: 130px;height: 65px;">
-                @endif
-            </td>
-            <td>{{ $row->updated_at->format('j F, Y') }}</td>
-            <td>{{ $row->users->name }}</td>
-            @can('service-publish')
-            <td>
-                <label class="switch">
-                    <input onchange="update_featured(this)" value="{{ $row->id }}" type="checkbox" <?php if ($row->featured == 1) echo "checked"; ?>>
-                    <span class="slider round"></span>
-                </label>
-            </td>
-            <td>
-                <label class="switch">
-                    <input onchange="update_top(this)" value="{{ $row->id }}" type="checkbox" <?php if ($row->top == 1) echo "checked"; ?>>
-                    <span class="slider round"></span>
-                </label>
-            </td>
+            <td><strong>{{ $row->name }}</strong></td>
+            <td>{{ $row->service_badge ?: '—' }}</td>
+            <td>{{ $row->service_page_order ?? 1 }}</td>
+            <td>{{ $row->updated_at->format('d M Y') }}</td>
+            <td>{{ $row->users->name ?? '—' }}</td>
 
-            <td>
+            @can('service-publish')
+            <td class="text-center">
                 <label class="switch">
-                    <input onchange="update_status(this)" value="{{ $row->id }}" type="checkbox" <?php if ($row->status == 1) echo "checked"; ?>>
+                    <input onchange="update_status_type(this,'service_page')" value="{{ $row->id }}" type="checkbox" <?php if (($row->show_on_services_page ?? 0) == 1) echo "checked"; ?>>
+                    <span class="slider round"></span>
+                </label>
+            </td>
+            <td class="text-center">
+                <label class="switch">
+                    <input onchange="update_status_type(this,'status')" value="{{ $row->id }}" type="checkbox" <?php if ($row->status == 1) echo "checked"; ?>>
                     <span class="slider round"></span>
                 </label>
             </td>
             @endcan
+
             @canany(['service-edit','service-delete'])
             <td>
                 <div class="btn-group">
                     @can('service-edit')
-                    <a href="{{ route('service.edit', Crypt::encrypt($row->id)) }}" type="button" class="btn btn-primary btn-sm">
-                        <i class="fas fa-edit"></i></a>
+                    <a href="{{ route('service.edit', Crypt::encrypt($row->id)) }}" class="btn btn-primary btn-sm" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
                     @endcan
-
                     @can('service-delete')
-                    <button type="button" class="btn btn-danger btn-sm" onclick='deleteServiceData("<?= $row->id ?>")'>
+                    <button type="button" class="btn btn-danger btn-sm" onclick='deleteService("<?= $row->id ?>")'  title="Delete">
                         <i class="far fa-trash-alt"></i>
                     </button>
                     @endcan
@@ -74,169 +66,68 @@
             </td>
             @endcanany
         </tr>
-        @endforeach
-
+        @empty
+        <tr>
+            <td colspan="10" class="text-center text-muted py-4">No services found. <a href="{{ route('service.create') }}">Add your first service</a>.</td>
+        </tr>
+        @endforelse
     </tbody>
-
 </table>
 <hr>
 <div class="row">
-    <div class="col-md-3" style="margin-top:10px;">
-        <p class="text-sm text-gray-700 leading-5">
-            Showing
-            <span class="font-medium">{{ $data->firstItem() }}</span>
-            to
-            <span class="font-medium">{{ $data->lastItem() }}</span>
-            of
-            <span class="font-medium">{{ $data->total() }}</span>
-            results
+    <div class="col-md-4" style="margin-top:10px;">
+        <p class="text-sm">
+            Showing <strong>{{ $data->firstItem() }}</strong> to <strong>{{ $data->lastItem() }}</strong>
+            of <strong>{{ $data->total() }}</strong> results
         </p>
-
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
         {{ $data->links('pagination::bootstrap-4') }}
     </div>
 </div>
-<input type="hidden" value="{{ $data->path()."?page=".$data->currentPage() }}" id="pageUrl">
-
+<input type="hidden" value="{{ $data->path() . '?page=' . $data->currentPage() }}" id="pageUrl">
 
 <script>
-    function deleteServiceData(id) {
+    function deleteService(id) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Delete this service?',
+            text: "This action cannot be undone.",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#e74c3c',
+            cancelButtonColor: '#6c757d',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     url: "{{ route('service.destroy') }}",
-                    data: {
-                        '_token': "{{ csrf_token() }}",
-                        'id': id
-                    },
+                    data: { '_token': "{{ csrf_token() }}", 'id': id },
                     type: 'POST',
-                    success: function(results) {
-
-                        if (results.status == "success") {
-                            Swal.fire(
-                                'Deleted!',
-                                results.message,
-                                results.status
-                            ).then(() => {
-                                location.reload();
-                            });
+                    success: function(res) {
+                        if (res.status === 'success') {
+                            Swal.fire('Deleted!', res.message, 'success').then(() => location.reload());
                         } else {
-                            Swal.fire(
-                                'Error!',
-                                results.message,
-                                results.status
-                            );
+                            Swal.fire('Error!', res.message, 'error');
                         }
                     }
                 });
-
-            }
-        })
-    }
-
-    function update_status(el) {
-        if (el.checked) {
-            var status = 1;
-        } else {
-            var status = 0;
-        }
-        $.ajax({
-            url: "{{ route('service.status') }}",
-            data: {
-                '_token': "{{ csrf_token() }}",
-                'id': el.value,
-                'status': status,
-                'type': 'status'
-            },
-            type: 'POST',
-            success: function(results) {
-                if (results.status == "success") {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: "Service Status Successfully Changed !."
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'danger',
-                        title: 'Danger!',
-                        text: "Service Status Not Changed !."
-                    });
-                }
             }
         });
     }
 
-    function update_featured(el) {
-        if (el.checked) {
-            var status = 1;
-        } else {
-            var status = 0;
-        }
+    function update_status_type(el, type) {
+        var status = el.checked ? 1 : 0;
         $.ajax({
             url: "{{ route('service.status') }}",
-            data: {
-                '_token': "{{ csrf_token() }}",
-                'id': el.value,
-                'status': status,
-                'type': 'featured'
-            },
+            data: { '_token': "{{ csrf_token() }}", 'id': el.value, 'status': status, 'type': type },
             type: 'POST',
-            success: function(results) {
-                if (results.status == "success") {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: "Featured service updated successfully !."
-                    });
+            success: function(res) {
+                var msg = type === 'service_page' ? 'Page visibility updated.' : 'Status updated.';
+                if (res.status === 'success') {
+                    Swal.fire({ icon: 'success', title: 'Done!', text: msg, timer: 1500, showConfirmButton: false });
                 } else {
-                    Swal.fire({
-                        icon: 'danger',
-                        title: 'Danger!',
-                        text: "Something went wrong !."
-                    });
-                }
-            }
-        });
-    }
-
-    function update_top(el) {
-        if (el.checked) {
-            var status = 1;
-        } else {
-            var status = 0;
-        }
-        $.ajax({
-            url: "{{ route('service.status') }}",
-            data: {
-                '_token': "{{ csrf_token() }}",
-                'id': el.value,
-                'status': status,
-                'type': 'top'
-            },
-            type: 'POST',
-            success: function(results) {
-                if (results.status == "success") {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: "Top service updated successfully !."
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'danger',
-                        title: 'Danger!',
-                        text: "Something went wrong !."
-                    });
+                    Swal.fire({ icon: 'error', title: 'Error', text: 'Something went wrong.' });
+                    el.checked = !el.checked; // revert toggle
                 }
             }
         });

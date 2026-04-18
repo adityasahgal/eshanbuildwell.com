@@ -11,15 +11,29 @@ class Service extends Model
     protected $table = 'services';
     protected $fillable = [];
 
-    public function categories()
+    public function getServicePointsArrayAttribute()
     {
-        return $this->hasOne('App\Models\Category', 'id', 'category_id');
+        if (empty($this->service_card_points)) {
+            return [];
+        }
+
+        return collect(preg_split('/\r\n|\r|\n/', $this->service_card_points))
+            ->map(fn($point) => trim($point))
+            ->filter()
+            ->values()
+            ->all();
     }
 
-    public function subcategories()
+    public function getResolvedThumbnailUrlAttribute()
     {
-        return $this->hasOne('App\Models\Subcategory', 'id', 'subcategory_id');
+        if (!empty($this->thumbnail_img)) {
+            return url('storage/' . $this->thumbnail_img);
+        }
+
+        return 'https://images.unsplash.com/photo-1541888081-0113f8d29864?w=700&q=80';
     }
+
+
 
     public function users()
     {

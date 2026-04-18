@@ -1,10 +1,8 @@
 @extends('layouts.master')
 @php
-$meta_title = "About Karinya Villas | Luxurious One, Two, and Three-Bedroom Villas in Nainital";
-$meta_description = "Learn about Karinya Villas, offering luxurious one, two, and three-bedroom villas in Nainital.
-Experience elegance, comfort, and breathtaking views in the heart of nature.";
-$keywords = "About Karinya Villas, one-bedroom villa Nainital, two-bedroom villa Nainital, three-bedroom villa Nainital,
-luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas Uttarakhand, hill station villas";
+$meta_title = "Eshan Buildwell ";
+$meta_description = "";
+$keywords = "";
 @endphp
 @section('meta_title'){{ $meta_title }}@stop
 @section('meta_description'){{ $meta_description }}@stop
@@ -33,27 +31,17 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
 <!-- WHO WE ARE -->
 <section class="py-5 bg-white">
     <div class="container">
-        <h2 class="sec-title mb-4"><i class="bi bi-buildings-fill me-2" style="color:var(--orange)"></i> About Eshan
-            Buildwell India</h2>
+        <h2 class="sec-title mb-4"><i class="bi bi-buildings-fill me-2" style="color:var(--orange)"></i> About Eshan Buildwell India</h2>
         <div class="row g-4 align-items-center">
-            <div class="col-12 col-lg-5"><img src="{{ asset('assets/images/Architecture.jpg') }}" alt="About Us"
-                    class="w-100 rounded-3 shadow-sm" style="max-height:450px;object-fit:cover" /></div>
+            <div class="col-12 col-lg-5">
+                <img src="{{ asset('assets/images/Architecture.jpg') }}" alt="About Us" class="w-100 rounded-3 shadow-sm" style="max-height:450px;object-fit:cover" />
+            </div>
             <div class="col-12 col-lg-7">
-                <p><strong class="fs-5" style="font-family:'Barlow Condensed',sans-serif;color:var(--navy)">Eshan
-                        Buildwell India</strong> is a construction and project management firm committed to delivering
-                    residential, commercial, and industrial projects with clarity, discipline, and cost efficiency.</p>
-                <p>With a strong foundation in engineering expertise and practical site experience, we focus on
-                    structured planning, transparent costing, and disciplined execution to ensure successful project
-                    delivery from concept to final handover.</p>
-                <p>We specialize in building construction, project management consultancy (PMC), estimation & costing,
-                    and turnkey solutions, providing clients with end-to-end support under one roof. Our approach is
-                    driven by detailed planning, BOQ-based costing, and systematic coordination among all stakeholders.
-                </p>
-                <p>At Eshan Buildwell India, we believe that every successful project begins with proper planning and
-                    clear understanding. By combining technical knowledge with practical execution, we help clients
-                    achieve better quality, controlled budgets, and timely completion.</p>
-                <p class="mb-0">Serving across North India, we aim to build not just structures, but long-term trust and
-                    reliable partnerships through professionalism, transparency, and commitment to excellence.</p>
+                <p><strong class="fs-5" style="font-family:'Barlow Condensed',sans-serif;color:var(--navy)">Eshan Buildwell India</strong> is a construction and project management firm committed to delivering residential, commercial, and industrial projects with clarity, discipline, and cost efficiency.</p>
+                <p>With a strong foundation in engineering expertise and practical site experience, we focus on structured planning, transparent costing, and disciplined execution to ensure successful project delivery from concept to final handover.</p>
+                <p>We specialize in building construction, project management consultancy (PMC), estimation & costing, and turnkey solutions, providing clients with end-to-end support under one roof. Our approach is driven by detailed planning, BOQ-based costing, and systematic coordination among all stakeholders.</p>
+                <p>At Eshan Buildwell India, we believe that every successful project begins with proper planning and clear understanding. By combining technical knowledge with practical execution, we help clients achieve better quality, controlled budgets, and timely completion.</p>
+                <p class="mb-0">Serving across North India, we aim to build not just structures, but long-term trust and reliable partnerships through professionalism, transparency, and commitment to excellence.</p>
             </div>
         </div>
 
@@ -62,37 +50,28 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
                 <div class="mv-card h-100 shadow-sm border-0 bg-light p-4 rounded-3 text-center transition-hover">
                     <div class="icon fs-1 mb-3"><i class="bi bi-bullseye" style="color:var(--orange)"></i></div>
                     <h4 class="mb-3" style="color:var(--navy)">Our Vision</h4>
-                    <p class="text-muted mb-0">To become a trusted name in the construction industry by delivering
-                        projects with structured execution, cost clarity, and consistent quality.</p>
+                    <p class="text-muted mb-0">To become a trusted name in the construction industry by delivering projects with structured execution, cost clarity, and consistent quality.</p>
                 </div>
             </div>
             <div class="col-12 col-lg-4">
                 <div class="mv-card h-100 shadow-sm border-0 bg-light p-4 rounded-3 text-center transition-hover">
-                    <div class="icon fs-1 mb-3"><i class="bi bi-rocket-takeoff-fill" style="color:var(--orange)"></i>
-                    </div>
+                    <div class="icon fs-1 mb-3"><i class="bi bi-rocket-takeoff-fill" style="color:var(--orange)"></i></div>
                     <h4 class="mb-3" style="color:var(--navy)">Our Mission</h4>
-                    <p class="text-muted mb-0">To provide end-to-end construction solutions with a focus on planning,
-                        transparency, and disciplined delivery, ensuring client satisfaction at every stage.</p>
+                    <p class="text-muted mb-0">To provide end-to-end construction solutions with a focus on planning, transparency, and disciplined delivery, ensuring client satisfaction at every stage.</p>
                 </div>
             </div>
             <div class="col-12 col-lg-4">
                 <div class="mv-card h-100 shadow-sm border-0 bg-light p-4 rounded-3 transition-hover">
                     <div class="text-center">
-                        <div class="icon fs-1 mb-3"><i class="bi bi-diagram-3-fill" style="color:var(--orange)"></i>
-                        </div>
+                        <div class="icon fs-1 mb-3"><i class="bi bi-diagram-3-fill" style="color:var(--orange)"></i></div>
                     </div>
                     <h4 class="mb-3 text-center" style="color:var(--navy)">Our Core Values</h4>
                     <ul class="list-unstyled text-muted ps-2 mb-0">
-                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold"
-                                style="color:var(--orange)"></i>Planning First Approach</li>
-                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold"
-                                style="color:var(--orange)"></i>Transparency in Costing</li>
-                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold"
-                                style="color:var(--orange)"></i>Quality & Discipline</li>
-                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold"
-                                style="color:var(--orange)"></i>Client-Centric Execution</li>
-                        <li class="mb-0"><i class="bi bi-check2-circle me-2 fw-bold"
-                                style="color:var(--orange)"></i>Timely Delivery</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold" style="color:var(--orange)"></i>Planning First Approach</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold" style="color:var(--orange)"></i>Transparency in Costing</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold" style="color:var(--orange)"></i>Quality & Discipline</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle me-2 fw-bold" style="color:var(--orange)"></i>Client-Centric Execution</li>
+                        <li class="mb-0"><i class="bi bi-check2-circle me-2 fw-bold" style="color:var(--orange)"></i>Timely Delivery</li>
                     </ul>
                 </div>
             </div>
@@ -254,6 +233,8 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
         transition: all 0.4s ease;
         border: 1px solid #eef0f8;
         height: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     .team-pro-card:hover {
@@ -265,7 +246,7 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
     .team-photo-wrap {
         position: relative;
         overflow: hidden;
-        height: 260px;
+        height: 280px;
         background: linear-gradient(135deg, #e8eaf8, #d5d8f0);
     }
 
@@ -277,11 +258,14 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
         transition: transform 0.5s ease;
     }
 
+    .team-pro-card:hover {
+        transform: translateY(-10px);
+    }
+
     .team-pro-card:hover .team-photo-wrap img {
         transform: scale(1.06);
     }
 
-    /* Ribbon tag */
     .team-ribbon {
         position: absolute;
         top: 16px;
@@ -295,9 +279,9 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
         padding: 5px 14px 5px 10px;
         border-radius: 0 20px 20px 0;
         box-shadow: 0 4px 12px rgba(232, 119, 34, 0.4);
+        z-index: 2;
     }
 
-    /* Social overlay */
     .team-social-overlay {
         position: absolute;
         inset: 0;
@@ -336,15 +320,16 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
         border-color: var(--orange);
     }
 
-    /* Body */
     .team-pro-body {
         padding: 22px 22px 24px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     .team-pro-body h5 {
         color: var(--navy);
         font-weight: 800;
-        font-size: 1.15rem;
         margin-bottom: 3px;
         font-family: 'Barlow Condensed', sans-serif;
         font-size: 1.3rem;
@@ -371,6 +356,7 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
         font-size: 0.875rem;
         line-height: 1.7;
         margin-bottom: 14px;
+        flex-grow: 1;
     }
 
     .team-skills {
@@ -392,116 +378,48 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
 <section class="team-section">
     <div class="container">
         <p class="sec-title text-center">Meet Our Expert Team</p>
-        <div class="sec-line center mb-2"><span class="sec-sub">The professionals behind every successful project</span>
-        </div>
+        <div class="sec-line center mb-2"><span class="sec-sub">The professionals behind every successful project</span></div>
         <div class="row g-4 mt-3">
-
-            <!-- CEO -->
+            @forelse($team as $member)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="team-pro-card">
                     <div class="team-photo-wrap">
-                        <span class="team-ribbon">Leadership</span>
-                        <img src="{{ asset('assets/images/ceo.jpeg') }}" alt="Aditya Sahgal - Founder & CEO">
+                        @if($member->ribbon)
+                        <span class="team-ribbon">{{ $member->ribbon }}</span>
+                        @endif
+                        <img src="{{ $member->resolved_image_url }}" alt="{{ $member->name }}">
                         <div class="team-social-overlay">
-                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                            <a href="#" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                            @if($member->linkedin)
+                            <a href="{{ $member->linkedin }}" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            @endif
+                            @if($member->email)
+                            <a href="mailto:{{ $member->email }}" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                            @endif
                         </div>
                     </div>
                     <div class="team-pro-body">
-                        <h5>Gagandeep rajput</h5>
-                        <div class="team-role">Founder & CEO</div>
+                        <h5>{{ $member->name }}</h5>
+                        <div class="team-role">{{ $member->designation }}</div>
                         <div class="team-divider"></div>
-                        <p class="team-bio">With 15+ years of hands-on experience in construction management, Gagandeep
-                            leads the company's strategic direction and ensures every project reflects the highest
-                            standards of quality and transparency.</p>
+                        @if($member->description)
+                        <p class="team-bio">{{ $member->description }}</p>
+                        @endif
+                        
+                        @if($member->skills)
                         <div class="team-skills">
-                            <span class="team-skill-tag">Project Strategy</span>
-                            <span class="team-skill-tag">BOQ & Estimation</span>
-                            <span class="team-skill-tag">Client Relations</span>
+                            @foreach(explode(',', $member->skills) as $skill)
+                            <span class="team-skill-tag">{{ trim($skill) }}</span>
+                            @endforeach
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
-
-            <!-- Chief Engineer -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="team-pro-card">
-                    <div class="team-photo-wrap" style="background: linear-gradient(135deg, #f0e8d8, #e8d8c0)">
-                        <span class="team-ribbon">Engineering</span>
-                        <img src="{{ asset('assets/images/t2.jpeg') }}" alt="Ravi Kumar" style="object-fit:cover">
-                        <div class="team-social-overlay">
-                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team-pro-body">
-                        <h5>Ravi Kumar</h5>
-                        <div class="team-role">Chief Structural Engineer</div>
-                        <div class="team-divider"></div>
-                        <p class="team-bio">A seasoned structural engineer with expertise in RCC framing, foundation
-                            systems, and site supervision. Ravi ensures every build meets structural integrity and
-                            safety norms.</p>
-                        <div class="team-skills">
-                            <span class="team-skill-tag">RCC Design</span>
-                            <span class="team-skill-tag">Site Supervision</span>
-                            <span class="team-skill-tag">Quality Control</span>
-                        </div>
-                    </div>
-                </div>
+            @empty
+            <div class="col-12 text-center text-muted">
+                <p>Establishing our team of excellence...</p>
             </div>
-
-            <!-- Project Manager -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="team-pro-card">
-                    <div class="team-photo-wrap" style="background: linear-gradient(135deg, #d8e8f0, #c0d5e8)">
-                        <span class="team-ribbon">Management</span>
-                        <img src="{{ asset('assets/images/t1.jpeg') }}" alt="Priya Singh">
-                        <div class="team-social-overlay">
-                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team-pro-body">
-                        <h5>Priya Singh</h5>
-                        <div class="team-role">Senior Project Manager</div>
-                        <div class="team-divider"></div>
-                        <p class="team-bio">Priya coordinates between clients, contractors, and vendors to ensure timely
-                            delivery. Her systematic approach to project scheduling keeps every milestone on track.</p>
-                        <div class="team-skills">
-                            <span class="team-skill-tag">PMC</span>
-                            <span class="team-skill-tag">Scheduling</span>
-                            <span class="team-skill-tag">Stakeholder Mgmt</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Architect -->
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="team-pro-card">
-                    <div class="team-photo-wrap" style="background: linear-gradient(135deg, #e8f0d8, #d0e8c0)">
-                        <span class="team-ribbon">Architecture</span>
-                        <img src="{{ asset('assets/images/Architect.png') }}" alt="Amit Sharma">
-                        <div class="team-social-overlay">
-                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="team-pro-body">
-                        <h5>Neha Gupta</h5>
-                        <div class="team-role">Lead Architect</div>
-                        <div class="team-divider"></div>
-                        <p class="team-bio">Neha blends aesthetic design with functional planning. From concept layouts
-                            to working drawings, she ensures every design is buildable, efficient, and visually
-                            compelling.</p>
-                        <div class="team-skills">
-                            <span class="team-skill-tag">Architectural Design</span>
-                            <span class="team-skill-tag">AutoCAD</span>
-                            <span class="team-skill-tag">3D Visualization</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
+            @endforelse
         </div>
     </div>
 </section>
@@ -539,39 +457,30 @@ luxury villas in Nainital, Nainital accommodations, serene stays, Karinya Villas
         <p class="sec-title text-center">Client Testimonials</p>
         <div class="sec-line center mb-4"></div>
         <div class="row g-4">
+            @forelse($testimonials as $testi)
             <div class="col-md-4">
                 <div class="testi-card">
-                    <div class="testi-stars">★★★★★</div>
-                    <blockquote>"Eshan Buildwell delivered our commercial project ahead of schedule with impeccable
-                        quality."</blockquote>
+                    <div class="testi-stars">
+                        @for($i=1; $i<=5; $i++)
+                            @if($i <= $testi->rating)
+                                ★
+                            @else
+                                ☆
+                            @endif
+                        @endfor
+                    </div>
+                    <blockquote>"{{ $testi->quote }}"</blockquote>
                     <div class="testi-author">
-                        <div class="testi-avatar">RS</div>
-                        <div><strong>Rajesh Sharma</strong><span>Commercial Project, Delhi</span></div>
+                        <div class="testi-avatar">{{ $testi->avatar_initials }}</div>
+                        <div><strong>{{ $testi->name }}</strong><span>{{ $testi->project_info }}</span></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="testi-card">
-                    <div class="testi-stars">★★★★★</div>
-                    <blockquote>"Transparent pricing with zero hidden costs. The team was professional throughout our
-                        home renovation."</blockquote>
-                    <div class="testi-author">
-                        <div class="testi-avatar">PV</div>
-                        <div><strong>Priya Verma</strong><span>Luxury Villa, Noida</span></div>
-                    </div>
-                </div>
+            @empty
+            <div class="col-12 text-center text-muted">
+                <p>Establishing our record of excellence...</p>
             </div>
-            <div class="col-md-4">
-                <div class="testi-card">
-                    <div class="testi-stars">★★★★★</div>
-                    <blockquote>"Outstanding project management for our industrial facility. Every milestone was met on
-                        time."</blockquote>
-                    <div class="testi-author">
-                        <div class="testi-avatar">AG</div>
-                        <div><strong>Amit Gupta</strong><span>Industrial Facility, Gurugram</span></div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>

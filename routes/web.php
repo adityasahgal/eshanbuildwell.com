@@ -10,9 +10,12 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\TeamMemberController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CalculatorPricingController;
 use App\Http\Controllers\Admin\CalculatorEnquiryController;
+use App\Http\Controllers\Admin\ProjectSliderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +70,30 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
             Route::post('banner/update', [BannerController::class, 'update'])->name('banner.update');
             Route::post('banner/status', [BannerController::class, 'status'])->name('banner.status');
             Route::post('banner/destroy', [BannerController::class, 'destroy'])->name('banner.destroy');
+
+            // Homepage Project Slider Routes
+            Route::get('project-slider', [ProjectSliderController::class, 'index'])->name('project-slider.index');
+            Route::post('project-slider/store', [ProjectSliderController::class, 'store'])->name('project-slider.store');
+            Route::post('project-slider/edit', [ProjectSliderController::class, 'edit'])->name('project-slider.edit');
+            Route::post('project-slider/update', [ProjectSliderController::class, 'update'])->name('project-slider.update');
+            Route::post('project-slider/status', [ProjectSliderController::class, 'status'])->name('project-slider.status');
+            Route::post('project-slider/destroy', [ProjectSliderController::class, 'destroy'])->name('project-slider.destroy');
+
+            // Team Member Routes
+            Route::get('team-member', [TeamMemberController::class, 'index'])->name('team-member.index');
+            Route::post('team-member/store', [TeamMemberController::class, 'store'])->name('team-member.store');
+            Route::post('team-member/edit', [TeamMemberController::class, 'edit'])->name('team-member.edit');
+            Route::post('team-member/update', [TeamMemberController::class, 'update'])->name('team-member.update');
+            Route::post('team-member/status', [TeamMemberController::class, 'status'])->name('team-member.status');
+            Route::post('team-member/destroy', [TeamMemberController::class, 'destroy'])->name('team-member.destroy');
+
+            // Testimonial Routes
+            Route::get('testimonial', [TestimonialController::class, 'index'])->name('testimonial.index');
+            Route::post('testimonial/store', [TestimonialController::class, 'store'])->name('testimonial.store');
+            Route::post('testimonial/edit', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+            Route::post('testimonial/update', [TestimonialController::class, 'update'])->name('testimonial.update');
+            Route::post('testimonial/status', [TestimonialController::class, 'status'])->name('testimonial.status');
+            Route::post('testimonial/destroy', [TestimonialController::class, 'destroy'])->name('testimonial.destroy');
 
             // Category Routes
             Route::get('category', [CategoryController::class, 'index'])->name('category.index');
@@ -143,5 +170,5 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
 
     Route::get('{cateSlug}', [MainController::class, 'getCateSlug']);
     Route::get('{cateSlug}/{subcateSlug}', [MainController::class, 'getSubcateSlug']);
-    Route::get('{cateSlug}/{subcateSlug}/{slug}', [MainController::class, 'getServiceSlug']);
 });
+

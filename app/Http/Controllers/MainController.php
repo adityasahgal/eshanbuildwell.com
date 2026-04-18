@@ -7,8 +7,11 @@ use App\Models\CalculatorEnquiry;
 use App\Models\CalculatorPricing;
 use App\Models\Category;
 use App\Models\Enquiry;
+use App\Models\ProjectSlider;
 use App\Models\Service;
 use App\Models\Subcategory;
+use App\Models\TeamMember;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
@@ -18,12 +21,32 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $projectSliders = ProjectSlider::where('status', 1)
+            ->orderBy('position')
+            ->orderByDesc('created_at')
+            ->get();
+
+        $services = Service::where('status', 1)
+            ->where('show_on_services_page', 1)
+            ->orderBy('service_page_order')
+            ->orderByDesc('created_at')
+            ->limit(3)
+            ->get();
+
+        $testimonials = Testimonial::where('status', 1)->orderBy('position')->get();
+
+        return view('frontend.index', compact('projectSliders', 'services', 'testimonials'));
     }
 
     public function services()
     {
-        return view('frontend.services');
+        $services = Service::where('status', 1)
+            ->where('show_on_services_page', 1)
+            ->orderBy('service_page_order')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('frontend.services', compact('services'));
     }
 
     public function bim_training()
@@ -33,8 +56,20 @@ class MainController extends Controller
 
     public function projects()
     {
-        return view('frontend.projects');
+        $featuredProjects = ProjectSlider::where('status', 1)
+            ->where('featured', 1)
+            ->orderBy('position')
+            ->orderByDesc('created_at')
+            ->get();
+
+        $allProjects = ProjectSlider::where('status', 1)
+            ->orderBy('position')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('frontend.projects', compact('featuredProjects', 'allProjects'));
     }
+
 
     public function calculator()
     {
@@ -74,7 +109,14 @@ class MainController extends Controller
 
     public function about_us()
     {
-        return view('frontend.about-us');
+        $team = TeamMember::where('status', 1)
+            ->orderBy('position')
+            ->orderByDesc('created_at')
+            ->get();
+
+        $testimonials = Testimonial::where('status', 1)->orderBy('position')->get();
+
+        return view('frontend.about-us', compact('team', 'testimonials'));
     }
 
     public function privacy_policy()
@@ -141,22 +183,6 @@ class MainController extends Controller
         return abort(404);
     }
 
-    public function getServiceSlug($cateSlug, $subcateSlug, $slug)
-    {
-        $category = Category::where('status', 1)->where('slug', $cateSlug)->first();
-        $subcategory = Subcategory::where('status', 1)->where('slug', $subcateSlug)->first();
-        $product = Service::where('status', 1)->where('slug', $slug)->first();
-
-        if (!$category || !$subcategory) {
-            return abort(404);
-        }
-
-        if ($product) {
-            return view('frontend.view-product', ['productrow' => $product]);
-        }
-
-        return abort(404);
-    }
 
     public function confirmPaymentScreenshot(Request $request)
     {

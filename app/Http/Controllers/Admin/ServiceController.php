@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:service-create|service-edit|service-delete|service-publish', ['only' => ['index', 'store']]);
-        $this->middleware('permission:service-create', ['only' => ['store']]);
+        $this->middleware('permission:service-create|service-edit|service-delete|service-publish', ['only' => ['index']]);
+        $this->middleware('permission:service-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:service-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:service-delete', ['only' => ['destroy']]);
         $this->middleware('permission:service-publish', ['only' => ['status']]);
@@ -25,229 +24,170 @@ class ServiceController extends Controller
 
     public function index(Request $request)
     {
-
         if ($request->ajax()) {
-            $q = $request->search;
-            $status = $request->status;
-            $records = $request->records;
-            $data = Service::with(['categories', 'subcategories', 'users'])
-                ->when(!empty($q), function ($qry) use ($q) {
-                    $qry->Where('name', 'LIKE', "%{$q}%");
-                })
-                ->when(!empty($q), function ($query) use ($q) {
-                    $query->whereHas('categories', function ($query) use ($q) {
-                        $query->whereIn('name', $q);
-                    });
-                })
-                ->when(!empty($q), function ($query) use ($q) {
-                    $query->whereHas('subcategories', function ($query) use ($q) {
-                        $query->whereIn('name', $q);
-                    });
-                })
-                ->when(!empty($status), function ($query) use ($status) {
-                    $query->where('status', $status);
-                })
+            $q       = $request->search;
+            $status  = $request->status;
+            $records = $request->records ?? 10;
+
+            $data = Service::with(['users'])
+                ->when(!empty($q), fn($qry) => $qry->where('name', 'LIKE', "%{$q}%"))
+                ->when($status !== null && $status !== '', fn($qry) => $qry->where('status', $status))
                 ->orderBy('created_at', 'DESC')
                 ->paginate($records);
-            return view('admin.service.dataTable', compact('data'))->render();
-        } else {
-            $data = Service::with(['categories', 'subcategories', 'users'])->orderBy('created_at', 'DESC')->paginate(10);
-            return view('admin.service.index', compact('data'));
-        }
-    }
 
+            return view('admin.service.dataTable', compact('data'))->render();
+        }
+
+        $data = Service::with(['users'])->orderBy('created_at', 'DESC')->paginate(10);
+        return view('admin.service.index', compact('data'));
+    }
 
     public function create()
     {
-        $categories = Category::where('status', 1)->get();
-        return view('admin.service.create', compact(['categories']));
+        return view('admin.service.create');
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
         try {
-            $data = $request->all();
-            $validator = Validator::make($data, [
-                'name' => 'required|unique:services,name|max:255',
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:255',
             ]);
+
             if ($validator->fails()) {
                 return redirect()->route('service.create')->withErrors($validator)->withInput();
             }
-            $service = new Service();
-            $service->category_id = $request->cate_id;
-            $service->subcategory_id = $request->subcate_id;
-            $service->name = $request->name;
-            $service->code = $request->code;
 
-            if ($request->slug != null) {
-                $service->slug = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug)));
-            } else {
-                $service->slug = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)));
+            $service          = new Service();
+            $service->name    = $request->name;
+            $service->service_badge = $request->service_badge;
+            $service->status  = 1;
+
+            // Spartan image picker submits as array thumbnail_img[]
+            $files = $request->file('thumbnail_img');
+            if (!empty($files) && is_array($files) && isset($files[0])) {
+                $service->thumbnail_img = $files[0]->store('uploads/services/thumbnail', 'public');
+            } elseif ($request->hasFile('thumbnail_img') && !is_array($request->file('thumbnail_img'))) {
+                $service->thumbnail_img = $request->file('thumbnail_img')->store('uploads/services/thumbnail', 'public');
             }
 
-            $photos = array();
+            $service->short_description   = $request->short_description;
+            $service->service_card_points = $request->service_card_points;
+            $service->service_cta_text    = $request->service_cta_text ?: 'Get in touch';
+            $service->service_cta_link    = $request->service_cta_link ?: url('contact-us');
+            $service->description         = $request->description;
+            $service->service_page_order  = $request->service_page_order ?: 1;
+            $service->show_on_services_page = $request->has('show_on_services_page') ? 1 : 0;
+            $service->uid                 = Auth::id();
 
-            if ($request->hasFile('photos')) {
-                foreach ($request->photos as $key => $photo) {
-                    $path = $photo->store('uploads/services/photos');
-                    array_push($photos, $path);
-                }
-                $service->photos = json_encode($photos);
-            }
+            $service->save();
 
-            if ($request->hasFile('thumbnail_img')) {
-                $service->thumbnail_img = $request->thumbnail_img->store('uploads/services/thumbnail');
-            }
-
-            $service->image_alt = $request->image_alt;
-            $service->price = $request->price;
-            $service->mrp_price = $request->mrp_price;
-            $service->discount = $request->discount;
-            $service->gst = $request->gst;
-            $service->tax = $request->tax;
-            $service->short_description = $request->short_description;
-            $service->description = $request->description;
-            $service->h1_tag = $request->h1_tag;
-            $service->meta_title = $request->meta_title;
-            $service->meta_description = $request->meta_description;
-            $service->keywords = $request->keywords;
-            $service->uid = Auth::user()->id;
-
-            if ($service->save()) {
-                return redirect()->route('service.index')->with(['status' => 'success', 'message' => 'Insert Operation Successfully Done.']);
-            } else {
-                return redirect()->route('service.index')->with(['status' => 'error', 'message' => 'Something Wrong!. Please Try Again']);
-            }
+            return redirect()->route('service.index')
+                ->with(['status' => 'success', 'message' => 'Service added successfully.']);
         } catch (Exception $e) {
-            return redirect()->route('service.create')->with(['status' => 'error', 'message' => $e->getMessage()]);
+            return redirect()->route('service.create')
+                ->with(['status' => 'error', 'message' => $e->getMessage()])->withInput();
         }
     }
+
     public function edit(Request $request)
     {
-        $product = Service::with(['categories', 'subcategories', 'users'])->where('id', Crypt::decrypt($request->id))->first();
-        $categories = Category::where('status', 1)->get();
-        if ($product) {
-            return view('admin.service.edit', compact(['product', 'categories']));
-        } else {
-            return abort(404);
-        }
+        $product = Service::with(['users'])->findOrFail(Crypt::decrypt($request->id));
+        return view('admin.service.edit', compact('product'));
     }
+
     public function update(Request $request)
     {
         try {
-            $data = $request->all();
-            $service = Service::find(Crypt::decrypt($request->id));
-            $service->category_id = $request->cate_id;
-            $service->subcategory_id = $request->subcate_id;
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:255',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->route('service.edit', $request->id)->withErrors($validator)->withInput();
+            }
+
+            $service       = Service::findOrFail(Crypt::decrypt($request->id));
             $service->name = $request->name;
-            $service->code = $request->code;
+            $service->service_badge = $request->service_badge;
 
-            if ($request->slug != null) {
-                $service->slug = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug)));
-            } else {
-                $service->slug = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)));
-            }
-
-            if ($request->has('previous_photos')) {
-                $photos = $request->previous_photos;
-                $dbPhotoArr = json_decode($service->photos);
-                $deletePhotoArr = array_diff($dbPhotoArr, $photos);
-                foreach ($deletePhotoArr as $key => $photoRaw) {
-                    if (file_exists('storage/' . $photoRaw) && !empty($photoRaw)) {
-                        unlink('storage/' . $photoRaw);
-                    }
+            // Handle new image upload
+            $files = $request->file('thumbnail_img');
+            if (!empty($files) && is_array($files) && isset($files[0])) {
+                if (!empty($service->thumbnail_img)) {
+                    Storage::disk('public')->delete($service->thumbnail_img);
                 }
-            } else {
-                $photos = array();
-            }
-
-            if ($request->hasFile('photos')) {
-                foreach ($request->photos as $key => $photo) {
-                    $path = $photo->store('uploads/services/photos');
-                    array_push($photos, $path);
+                $service->thumbnail_img = $files[0]->store('uploads/services/thumbnail', 'public');
+            } elseif ($request->hasFile('thumbnail_img') && !is_array($request->file('thumbnail_img'))) {
+                if (!empty($service->thumbnail_img)) {
+                    Storage::disk('public')->delete($service->thumbnail_img);
                 }
-            }
-            $service->photos = json_encode($photos);
-
-
-
-            if ($request->hasFile('thumbnail_img')) {
-                if (file_exists('storage/' . $service->thumbnail_img) && !empty($service->thumbnail_img)) {
-                    unlink('storage/' . $service->thumbnail_img);
-                }
-                $service->thumbnail_img = $request->thumbnail_img->store('uploads/services/thumbnail');
-            } else {
+                $service->thumbnail_img = $request->file('thumbnail_img')->store('uploads/services/thumbnail', 'public');
+            } elseif ($request->filled('previous_thumbnail_img')) {
                 $service->thumbnail_img = $request->previous_thumbnail_img;
-            }
-            $service->image_alt = $request->image_alt;
-            $service->price = $request->price;
-            $service->mrp_price = $request->mrp_price;
-            $service->discount = $request->discount;
-            $service->gst = $request->gst;
-            $service->tax = $request->tax;
-            $service->short_description = $request->short_description;
-            $service->description = $request->description;
-            $service->h1_tag = $request->h1_tag;
-            $service->meta_title = $request->meta_title;
-            $service->meta_description = $request->meta_description;
-            $service->keywords = $request->keywords;
-            $service->uid = Auth::user()->id;
-            if ($service->save()) {
-                return redirect()->route('service.index')->with(['status' => 'success', 'message' => 'Update Operation Successfully Done.']);
             } else {
-                return redirect()->route('service.edit', $request->id)->with(['status' => 'error', 'message' => 'Something Wrong!. Please Try Again']);
+                // User removed image — clear it
+                $service->thumbnail_img = null;
             }
+
+            $service->short_description   = $request->short_description;
+            $service->service_card_points = $request->service_card_points;
+            $service->service_cta_text    = $request->service_cta_text ?: 'Get in touch';
+            $service->service_cta_link    = $request->service_cta_link ?: url('contact-us');
+            $service->description         = $request->description;
+            $service->service_page_order  = $request->service_page_order ?: 1;
+            $service->show_on_services_page = $request->has('show_on_services_page') ? 1 : 0;
+            $service->uid                 = Auth::id();
+
+            $service->save();
+
+            return redirect()->route('service.index')
+                ->with(['status' => 'success', 'message' => 'Service updated successfully.']);
         } catch (Exception $e) {
-            return redirect()->route('service.edit', $request->id)->with(['status' => 'error', 'message' => $e->getMessage()]);
+            return redirect()->route('service.edit', $request->id)
+                ->with(['status' => 'error', 'message' => $e->getMessage()]);
         }
     }
+
     public function status(Request $request)
     {
-        $service = Service::find($request->id);
-        if ($request->type == 'featured') {
-            $service->featured = $request->status;
-        } elseif ($request->type == 'top') {
-            $service->top = $request->status;
-        } else {
-            $service->status = $request->status;
+        try {
+            $service = Service::findOrFail($request->id);
+
+            if ($request->type === 'service_page') {
+                $service->show_on_services_page = $request->status;
+            } elseif ($request->type === 'featured') {
+                $service->featured = $request->status;
+            } elseif ($request->type === 'top') {
+                $service->top = $request->status;
+            } else {
+                $service->status = $request->status;
+            }
+
+            $service->uid = Auth::id();
+            $service->save();
+
+            return response()->json(['status' => 'success']);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
-        $service->uid = Auth::user()->id;
-        if ($service->save()) {
-            $data = [
-                'status' => 'success',
-            ];
-        } else {
-            $data = [
-                'status' => 'error',
-            ];
-        }
-        return response()->json($data);
     }
 
     public function destroy(Request $request)
     {
-        $res = Service::where('id', $request->id)->first();
-        if ($res) {
-            $dbPhotoArr = json_decode($res->photos);
-            foreach ($dbPhotoArr as $key => $photoRaw) {
-                if (file_exists('storage/' . $photoRaw) && !empty($photoRaw)) {
-                    unlink('storage/' . $photoRaw);
-                }
+        try {
+            $service = Service::findOrFail($request->id);
+
+            if (!empty($service->thumbnail_img)) {
+                Storage::disk('public')->delete($service->thumbnail_img);
             }
-            if (file_exists('storage/' . $res->thumbnail_img) && !empty($res->thumbnail_img)) {
-                unlink('storage/' . $res->thumbnail_img);
-            }
-            Service::where('id', $request->id)->delete();
-            $data = [
-                'status' => 'success',
-                'message' => 'Your Record has been deleted'
-            ];
-        } else {
-            $data = [
-                'status' => 'error',
-                'message' => 'Something Wrong.!'
-            ];
+
+            $service->delete();
+
+            return response()->json(['status' => 'success', 'message' => 'Service deleted successfully.']);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
-        return response()->json($data);
     }
 }

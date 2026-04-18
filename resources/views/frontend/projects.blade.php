@@ -9,7 +9,22 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 @section('meta_description'){{ $meta_description }}@stop
 @section('meta_keywords'){{ $keywords }}@stop
 
+@push('style')
+<style>
+    .gallery-item {
+        transition: all 0.3s ease;
+        animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+@endpush
+
+
 @section('content')
+
 <section class="hero-banner"><div class="container"><div class="hero-content"><h1>Our Featured Projects</h1><div class="hero-divider"></div><p>A Showcase of Our Expertise and Quality Work</p></div></div></section>
 <div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Projects</li></ol></nav></div></div>
 
@@ -19,24 +34,21 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
     <p class="sec-title text-center">🏗️ Our Featured Projects</p>
     <div class="sec-line center mb-4"><span class="sec-sub">A Showcase of Our Expertise and Quality Work</span></div>
     <div class="row g-4 justify-content-center">
+      @forelse($featuredProjects as $project)
       <div class="col-12 col-md-6">
         <div class="h-100 border rounded-3 overflow-hidden shadow-sm d-flex flex-column">
-          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Residential Project" class="w-100" style="height: 250px; object-fit: cover;"/>
+          <img src="{{ $project->resolved_image_url }}" alt="{{ $project->image_alt }}" class="w-100" style="height: 250px; object-fit: cover;"/>
           <div class="p-4 bg-light flex-grow-1">
-            <h5 class="fw-bold mb-3" style="color:var(--navy)">Residential Project<br><small class="text-secondary fs-6 fw-normal">A32, P-04, Greater Noida</small></h5>
-            <p class="text-muted mb-0">Successfully completed within 15 months, this residential project reflects our commitment to structured planning, quality construction, and timely delivery.</p>
+            <h5 class="fw-bold mb-3" style="color:var(--navy)">{{ $project->project_type }}<br><small class="text-secondary fs-6 fw-normal">{{ $project->title }}</small></h5>
+            <p class="text-muted mb-0">{{ $project->short_description }}</p>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6">
-        <div class="h-100 border rounded-3 overflow-hidden shadow-sm d-flex flex-column">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Commercial Project" class="w-100" style="height: 250px; object-fit: cover;"/>
-          <div class="p-4 bg-light flex-grow-1">
-            <h5 class="fw-bold mb-3" style="color:var(--navy)">Commercial Project<br><small class="text-secondary fs-6 fw-normal">G202, Sector 63, Noida</small></h5>
-            <p class="text-muted mb-0">A commercial development project completed in 24 months, showcasing efficient execution, coordination, and adherence to timelines.</p>
-          </div>
-        </div>
+      @empty
+      <div class="col-12 text-center text-muted">
+        <p>Stay tuned! Featured projects will be showcased here soon.</p>
       </div>
+      @endforelse
     </div>
     <div class="text-center mt-5"><a href="#gallery" class="btn-navy">View All Projects <i class="bi bi-chevron-down ms-1"></i></a></div>
   </div>
@@ -60,106 +72,45 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
     </div>
 
     <div class="gallery-grid" id="galleryGrid">
-      
-      <!-- Residential -->
-      <div class="gallery-item" data-cat="residential" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Residential Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
+      @forelse($allProjects as $project)
+      @php
+        $rawCat = strtolower(trim($project->category));
+        // Normalize categories to match the buttons
+        $catSlug = match($rawCat) {
+            'government', 'mall' => 'commercial',
+            default => str_replace(' ', '', $rawCat)
+        };
+        
+        $badgeClass = match($catSlug) {
+            'residential' => 'bg-primary',
+            'commercial'  => 'bg-secondary',
+            'industrial'  => 'bg-dark',
+            default       => 'bg-info'
+        };
+        $statusIcon = str_contains(strtolower($project->status_label), 'progress') ? 'bi-hourglass-split text-warning' : 'bi-check-circle-fill text-success';
+      @endphp
+      <!-- {{ $project->category }} -->
+      <div class="gallery-item" data-cat="{{ $catSlug }}" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
+        <img src="{{ $project->resolved_image_url }}" alt="{{ $project->image_alt }}" style="height:220px; width:100%; object-fit:cover; display:block;" />
         <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-primary mb-2">Residential</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">A32, P-04, Greater Noida</h6>
-          <p class="text-success fw-bold m-0" style="font-size:14px;"><i class="bi bi-check-circle-fill me-1"></i> Completed</p>
+          <span class="badge {{ $badgeClass }} mb-2">{{ $project->category }}</span>
+          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">{{ $project->title }}</h6>
+          <p class="fw-bold m-0" style="font-size:14px;"><i class="bi {{ $statusIcon }} me-1"></i> {{ $project->status_label }}</p>
+          @if($project->short_description && $catSlug === 'commercial')
+            <p class="text-muted small mt-2 mb-0 lh-sm" style="font-size:12px;">{{ $project->short_description }}</p>
+          @endif
         </div>
         <div class="overlay"><i class="bi bi-zoom-in"></i></div>
       </div>
-
-      <div class="gallery-item" data-cat="residential" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Residential Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-primary mb-2">Residential</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Plot No. 195, Sector 27, Gurugram</h6>
-          <p class="text-warning fw-bold m-0" style="font-size:14px;"><i class="bi bi-hourglass-split me-1"></i> In Progress</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
+      @empty
+      <div class="col-12 text-center py-5">
+          <p class="text-muted">No projects found in this category.</p>
       </div>
-
-      <div class="gallery-item" data-cat="residential" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Residential Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-primary mb-2">Residential</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Plot No. 35, Sector 18, Yamuna Exp.</h6>
-          <p class="text-warning fw-bold m-0" style="font-size:14px;"><i class="bi bi-hourglass-split me-1"></i> In Progress</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
-      <!-- Commercial (Experience Portfolio) -->
-      <div class="gallery-item" data-cat="commercial" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Commercial Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-secondary mb-2">Commercial</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">G202, Sector 63, Noida</h6>
-          <p class="text-success fw-bold m-0" style="font-size:14px;"><i class="bi bi-check-circle-fill me-1"></i> Completed</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
-      <div class="gallery-item" data-cat="commercial" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Commercial Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-secondary mb-2">Commercial</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Gallexie 91 Mall, Gurugram</h6>
-          <p class="text-success fw-bold mb-1" style="font-size:14px;"><i class="bi bi-check-circle-fill me-1"></i> Structure Completed</p>
-          <p class="text-muted small m-0 lh-sm" style="font-size:12px;">With MBPL / Axon Developers.</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
-      <div class="gallery-item" data-cat="commercial" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=600&q=80" alt="Commercial Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-secondary mb-2">Commercial</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Dept of Science & Technology</h6>
-          <p class="text-success fw-bold mb-1" style="font-size:14px;"><i class="bi bi-check-circle-fill me-1"></i> Completed</p>
-          <p class="text-muted small m-0 lh-sm" style="font-size:12px;">Phase-1 approx. ₹100 Cr (PCEPL).</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
-      <div class="gallery-item" data-cat="commercial" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Commercial Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-secondary mb-2">Commercial</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Ocus 24K Mall, Gurugram</h6>
-          <p class="text-success fw-bold mb-1" style="font-size:14px;"><i class="bi bi-check-circle-fill me-1"></i> Completed</p>
-          <p class="text-muted small m-0 lh-sm" style="font-size:12px;">With Ocus Skyscrapers Realty Ltd.</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
-      <!-- Industrial Projects -->
-      <div class="gallery-item" data-cat="industrial" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Industrial Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-dark mb-2">Industrial</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Plot No. A246, Sec 33, Yamuna Exp</h6>
-          <p class="text-warning fw-bold m-0" style="font-size:14px;"><i class="bi bi-hourglass-split me-1"></i> In Progress</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
-      <div class="gallery-item" data-cat="industrial" onclick="openLightbox(this)" style="background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); display:flex; flex-direction:column; position:relative;">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Industrial Project" style="height:220px; width:100%; object-fit:cover; display:block;" />
-        <div style="padding:20px; flex-grow:1;">
-          <span class="badge bg-dark mb-2">Industrial</span>
-          <h6 style="color:var(--navy); font-weight:700; margin-bottom:5px; font-size:16px; line-height:1.4;">Plot No. A220, Sec 33, Yamuna Exp</h6>
-          <p class="text-warning fw-bold m-0" style="font-size:14px;"><i class="bi bi-hourglass-split me-1"></i> In Progress</p>
-        </div>
-        <div class="overlay"><i class="bi bi-zoom-in"></i></div>
-      </div>
-
+      @endforelse
     </div>
   </div>
 </section>
+
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <button class="lightbox-close" onclick="closeLightbox()"><i class="bi bi-x-lg"></i></button>
@@ -172,25 +123,39 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
   </div>
 </section>
 
+@push('scripts')
 <script>
-document.querySelectorAll('.btn-filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    
-    // Toggle gallery items
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.classList.toggle('hidden', f !== 'all' && item.dataset.cat !== f);
+document.addEventListener('DOMContentLoaded', function () {
+  const buttons = document.querySelectorAll('.btn-filter');
+  const items = document.querySelectorAll('.gallery-item');
+  const commDesc = document.getElementById('commercialDesc');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Active button toggle
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.dataset.filter;
+
+      items.forEach(item => {
+        const itemCat = item.dataset.cat;
+        if (filterValue === 'all' || itemCat === filterValue) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Commercial description toggle
+      if (commDesc) {
+        if (filterValue === 'commercial' || filterValue === 'all') {
+          commDesc.style.display = 'block';
+        } else {
+          commDesc.style.display = 'none';
+        }
+      }
     });
-    
-    // Toggle the commercial description alert specially
-    const commDesc = document.getElementById('commercialDesc');
-    if(f === 'commercial' || f === 'all') {
-       commDesc.style.display = 'block';
-    } else {
-       commDesc.style.display = 'none';
-    }
   });
 });
 
@@ -208,5 +173,8 @@ function closeLightbox(e) {
 }
 document.querySelector('.lightbox-close').addEventListener('click', () => document.getElementById('lightbox').classList.remove('show'));
 </script>
+@endpush
+
+
 
 @endsection

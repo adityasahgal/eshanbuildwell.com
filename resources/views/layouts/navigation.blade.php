@@ -15,6 +15,30 @@
             </a>
         </li>
         @endcanany
+        @canany(['project-slider-create','project-slider-edit','project-slider-delete','project-slider-publish'])
+        <li class="nav-item">
+            <a href="{{ route('project-slider.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-images"></i>
+                <p>Project Slider</p>
+            </a>
+        </li>
+        @endcanany
+        @canany(['team-create','team-edit','team-delete','team-publish'])
+        <li class="nav-item">
+            <a href="{{ route('team-member.index') }}" class="nav-link {{ Route::is('team-member.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Team Members</p>
+            </a>
+        </li>
+        @endcanany
+        @canany(['testimonial-create','testimonial-edit','testimonial-delete','testimonial-publish'])
+        <li class="nav-item">
+            <a href="{{ route('testimonial.index') }}" class="nav-link {{ Route::is('testimonial.*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-comment-dots"></i>
+                <p>Testimonials</p>
+            </a>
+        </li>
+        @endcanany
         <!-- @canany(['category-create','category-edit','category-delete','category-publish'])
         <li class="nav-item">
             <a href="{{ route('category.index') }}" class="nav-link">
@@ -31,7 +55,7 @@
                 <p>Sub Category</p>
             </a>
         </li>
-        @endcanany
+        @endcanany -->
 
         @canany(['service-create','service-edit','service-delete','service-publish'])
         <li class="nav-item">
@@ -40,7 +64,7 @@
                 <p>Services</p>
             </a>
         </li>
-        @endcanany -->
+        @endcanany 
 
         @canany(['blog-create','blog-edit','blog-delete','blog-publish'])
         <li class="nav-item">

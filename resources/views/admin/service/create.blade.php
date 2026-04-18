@@ -1,36 +1,29 @@
 @extends('layouts.admin')
+
 @push('style')
 <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
 <style>
     .img-upload-preview {
         border: 2px dashed #ddd;
-        height: 200px;
-        border-radius: 3px;
+        height: 180px;
+        border-radius: 6px;
         cursor: pointer;
-        text-align: center;
-        overflow: hidden;
-        padding: 5px;
-        margin-top: 5px;
-        margin-bottom: 5px;
         display: flex;
         align-items: center;
-        margin: auto;
         justify-content: center;
+        overflow: hidden;
         position: relative;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
-
     .img-upload-preview .close-btn {
-        right: 3px;
-        top: 3px;
-        background: rgb(237, 60, 32);
-        border-radius: 3px;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
+        right: 5px; top: 5px;
+        background: #e74c3c;
+        border-radius: 4px;
+        width: 28px; height: 28px;
+        line-height: 28px;
         text-align: center;
         text-decoration: none;
-        color: rgb(255, 255, 255);
+        color: #fff;
         position: absolute;
         padding: 0;
     }
@@ -38,19 +31,15 @@
 @endpush
 
 @section('content')
-
-<!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <!-- /.row -->
-
         <div class="row">
+            <div class="col-md-10 offset-md-1">
 
-            <div class="col-md-12">
-                @if ($errors->any())
+                @if($errors->any())
                 <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
+                    <ul class="mb-0">
+                        @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
                         @endforeach
                     </ul>
@@ -59,253 +48,121 @@
 
                 @if(Session('status'))
                 <script>
-                    Swal.fire({
-                        icon: '<?= Session('status') ?>',
-                        title: '<?= Session('status') ?>',
-                        text: '<?= Session('message') ?>',
-                    })
+                    Swal.fire({ icon: '<?= Session('status') ?>', title: '<?= Session('status') ?>', text: '<?= Session('message') ?>' });
                 </script>
                 @endif
+
                 <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h4 class="modal-title">Add New Service</h4>
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0">Add New Service</h4>
+                        <a href="{{ route('service.index') }}" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </a>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body table-responsive" id="tag_container">
 
-                        <!-- form start -->
-                        <form role="form" action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="cate_id">Category</label>
-                                        <select name="cate_id" class="form-control" id="category" onChange="getSubcategoryData();" required>
-                                            <option hidden>Select Category</option>
-                                            @foreach($categories as $key => $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="subcate_id">Sub Category</label>
-                                        <select name="subcate_id" class="form-control" id="subcategory" required>
-                                            <option hidden>Select SubCategory</option>
-                                        </select>
-                                    </div>
+                    <form action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
+
+                            {{-- Name + Badge --}}
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <label for="name">Service Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}" required placeholder="e.g. Building Construction">
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" name="name" required>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="code">Code</label>
-                                        <input type="text" class="form-control" name="code" required>
-                                    </div>
+                                <div class="form-group col-md-4">
+                                    <label for="service_badge">Card Badge</label>
+                                    <input type="text" class="form-control" name="service_badge" id="service_badge" value="{{ old('service_badge') }}" placeholder="e.g. Construction">
                                 </div>
-
-                                <div class="form-group row">
-                                    <label class="col-lg-2 control-label">{{__('Thumbnail Image')}} </label>
-                                    <div class="col-lg-10">
-                                        <div class="row" id="thumbnail_img">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-lg-2 control-label">{{__('Main Images')}}</label>
-                                    <div class="col-lg-10">
-                                        <div class="row" id="photos">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="price">Price</label>
-                                        <input type="number" class="form-control" name="price">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="mrp_price">M.R.P. Price</label>
-                                        <input type="number" class="form-control" name="mrp_price">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label for="discount">Discount ( % )</label>
-                                        <input type="number" class="form-control" name="discount">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="gst">GST ( % )</label>
-                                        <input type="number" class="form-control" name="gst">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="tax">Tax ( % )</label>
-                                        <input type="number" class="form-control" name="tax">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="short_description">Short Description</label>
-                                        <textarea class="form-control" name="short_description"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="description">Description</label>
-                                        <textarea id="textarea" name="description" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="image_alt">Image Alt</label>
-                                        <input type="text" class="form-control" name="image_alt">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="h1_tag">H1 Tag</label>
-                                        <input type="text" class="form-control" name="h1_tag">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="meta_title">Meta Title</label>
-                                        <input type="text" class="form-control" name="meta_title">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="meta_description">Meta Description</label>
-                                        <textarea class="form-control" name="meta_description"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="keywords">Keywords</label>
-                                        <textarea class="form-control" name="keywords"></textarea>
-                                    </div>
-                                </div>
-
                             </div>
-                            <!-- /.card-body -->
 
-                            <div class="card-footer text-center">
-                                <button type="submit" class="btn btn-primary">Add Records</button>
+                            {{-- CTA --}}
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="service_cta_text">CTA Button Text</label>
+                                    <input type="text" class="form-control" name="service_cta_text" value="{{ old('service_cta_text', 'Get in touch') }}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="service_page_order">Display Order</label>
+                                    <input type="number" class="form-control" name="service_page_order" value="{{ old('service_page_order', 1) }}" min="1">
+                                </div>
+                                <div class="form-group col-md-2 d-flex align-items-end">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="show_on_services_page" name="show_on_services_page" {{ old('show_on_services_page', true) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="show_on_services_page">Show on Page</label>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
 
-                    </div>
-                    <!-- /.card-body -->
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="service_cta_link">CTA Link</label>
+                                    <input type="text" class="form-control" name="service_cta_link" value="{{ old('service_cta_link', url('contact-us')) }}">
+                                </div>
+                            </div>
+
+                            {{-- Thumbnail --}}
+                            <div class="form-group">
+                                <label>Thumbnail Image</label>
+                                <div class="row" id="thumbnail_img"></div>
+                            </div>
+
+                            {{-- Highlights --}}
+                            <div class="form-group">
+                                <label for="service_card_points">Card Highlights <small class="text-muted">(one per line)</small></label>
+                                <textarea class="form-control" name="service_card_points" rows="4" placeholder="Residential, Commercial & Industrial&#10;Turnkey Construction Solutions&#10;Quality Control">{{ old('service_card_points') }}</textarea>
+                            </div>
+
+                            {{-- Short Description --}}
+                            <div class="form-group">
+                                <label for="short_description">Short Description</label>
+                                <textarea class="form-control" name="short_description" rows="3" placeholder="Brief summary shown on the service card...">{{ old('short_description') }}</textarea>
+                            </div>
+
+                            {{-- Full Description --}}
+                            <div class="form-group">
+                                <label>Full Description</label>
+                                <textarea id="description_editor" name="description">{{ old('description') }}</textarea>
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-right">
+                            <a href="{{ route('service.index') }}" class="btn btn-secondary mr-2">Cancel</a>
+                            <button type="submit" class="btn btn-primary submitBtn">
+                                <i class="fas fa-save"></i> Save Service
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <!-- /.card -->
+
             </div>
         </div>
-        <!-- /.row -->
     </div>
 </section>
-
 @endsection
 
 @push('script')
 <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script src="{{ url('admin/js/multi-image-picker-min.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#photos").spartanMultiImagePicker({
-            fieldName: 'photos[]',
-            maxCount: 10,
-            rowHeight: '200px',
-            groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-            maxFileSize: '',
-            dropFileLabel: "Drop Here",
-            onExtensionErr: function(index, file) {
-                console.log(index, file, 'extension err');
-                alert('Please only input png or jpg type file')
-            },
-            onSizeErr: function(index, file) {
-                console.log(index, file, 'file size too big');
-                alert('File size too big');
-            }
-        });
-        $("#thumbnail_img").spartanMultiImagePicker({
+<script>
+    $(document).ready(function () {
+        $('#thumbnail_img').spartanMultiImagePicker({
             fieldName: 'thumbnail_img',
             maxCount: 1,
-            rowHeight: '200px',
-            groupClassName: 'col-md-4 col-sm-4 col-xs-6',
-            maxFileSize: '',
-            dropFileLabel: "Drop Here",
-            onExtensionErr: function(index, file) {
-                console.log(index, file, 'extension err');
-                alert('Please only input png or jpg type file')
-            },
-            onSizeErr: function(index, file) {
-                console.log(index, file, 'file size too big');
-                alert('File size too big');
-            }
+            rowHeight: '180px',
+            groupClassName: 'col-md-4',
+            dropFileLabel: 'Drop image here or click',
+            onExtensionErr: function () { alert('Only PNG/JPG allowed.'); },
+            onSizeErr: function () { alert('File too large.'); }
         });
 
+        $('#description_editor').summernote({ height: 220 });
 
-        $('.remove-files').on('click', function() {
-            $(this).parents(".col-md-4").remove();
+        // Disable button AFTER form starts submitting to prevent double-submit
+        // Using form submit event — NOT button click (click disables before submit fires)
+        $('form').on('submit', function () {
+            $('.submitBtn').attr('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
         });
     });
-</script>
-<script type="text/javascript">
-    $(function() {
-        // Summernote
-        $('#textarea').summernote()
-    });
-
-    $(document).ready(function() {
-        $(".submitBtn").click(function() {
-            $(".submitBtn").attr("disabled", true);
-            return true;
-        });
-    });
-</script>
-
-<script>
-    $(function() {
-        $(".select2").select2({
-            allowClear: true,
-            closeOnSelect: false,
-        });
-    });
-</script>
-<script>
-    function getSubcategoryData() {
-        var id = $("#category").val();
-        if (id == "") {
-            var miniDepart = $("#subcategory");
-            miniDepart.empty();
-            miniDepart.append('<option value="">Select Subcategory</option>');
-        } else {
-            $.ajax({
-                url: "{{ route('subcategory.getSubcate') }}",
-                data: {
-                    '_token': "{{ csrf_token() }}",
-                    'cid': id
-                },
-                type: 'POST',
-                success: function(response) {
-                    var miniDepart = $("#subcategory");
-                    miniDepart.empty();
-                    miniDepart.append('<option value="">Select Subcategory</option>');
-                    miniDepart.append(response);
-                }
-            });
-        }
-    }
 </script>
 @endpush

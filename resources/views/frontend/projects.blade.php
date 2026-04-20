@@ -25,7 +25,15 @@ $keywords = "Eshan Buildwell, construction services, residential construction, c
 
 @section('content')
 
-<section class="hero-banner"><div class="container"><div class="hero-content"><h1>Our Featured Projects</h1><div class="hero-divider"></div><p>A Showcase of Our Expertise and Quality Work</p></div></div></section>
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.2), rgba(15,25,50,0.2)), url('.url('storage/'.$banner->banner).');' : '' }}">
+    <div class="container">
+        <div class="hero-content">
+            <h1>{!! isset($banner) ? nl2br(e($banner->name)) : 'Our Featured Projects' !!}</h1>
+            <div class="hero-divider"></div>
+            <p>{{ isset($banner) ? $banner->tag_line : 'A Showcase of Our Expertise and Quality Work' }}</p>
+        </div>
+    </div>
+</section>
 <div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Projects</li></ol></nav></div></div>
 
 <!-- FEATURED -->

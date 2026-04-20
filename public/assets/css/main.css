@@ -184,7 +184,7 @@ p {
    ═══════════════════════════════════════════════════════════════ */
 .hero-banner {
     position: relative;
-    min-height: 330px;
+    min-height: 400px;
     background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80') center/cover no-repeat;
     display: flex;
     align-items: flex-end;
@@ -196,7 +196,7 @@ p {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(26, 42, 74, .82) 45%, rgba(232, 119, 34, .3) 100%);
+    /* background: linear-gradient(120deg, rgba(26, 42, 74, .82) 45%, rgba(232, 119, 34, .3) 100%); */
 }
 
 .hero-content {

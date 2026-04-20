@@ -3,6 +3,7 @@
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Page</th>
             <th>Banner</th>
             <th>Position</th>
             <th>Update Date</th>
@@ -18,6 +19,7 @@
         <tr>
             <th>{{ ($key+1) + ($data->currentPage() - 1)*$data->perPage() }}</th>
             <td>{{ $row->name }}</td>
+            <td><span class="badge badge-info">{{ ucfirst(str_replace('-', ' ', $row->page_slug ?: 'General')) }}</span></td>
             <td>
                 @if(file_exists('storage/' . $row->banner) && !empty($row->banner))
                 <img src="{{ url('storage/'.$row->banner) }}" alt="{{ $row->image_alt }}" style="width: 84px;height: 48px;">

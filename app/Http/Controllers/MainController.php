@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\CalculatorEnquiry;
 use App\Models\CalculatorPricing;
@@ -34,8 +35,9 @@ class MainController extends Controller
             ->get();
 
         $testimonials = Testimonial::where('status', 1)->orderBy('position')->get();
+        $banner = Banner::where('page_slug', 'home')->where('status', 1)->first();
 
-        return view('frontend.index', compact('projectSliders', 'services', 'testimonials'));
+        return view('frontend.index', compact('projectSliders', 'services', 'testimonials', 'banner'));
     }
 
     public function services()
@@ -46,12 +48,15 @@ class MainController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('frontend.services', compact('services'));
+        $banner = Banner::where('page_slug', 'services')->where('status', 1)->first();
+
+        return view('frontend.services', compact('services', 'banner'));
     }
 
     public function bim_training()
     {
-        return view('frontend.bim-training');
+        $banner = Banner::where('page_slug', 'bim-training')->where('status', 1)->first();
+        return view('frontend.bim-training', compact('banner'));
     }
 
     public function projects()
@@ -67,7 +72,9 @@ class MainController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('frontend.projects', compact('featuredProjects', 'allProjects'));
+        $banner = Banner::where('page_slug', 'projects')->where('status', 1)->first();
+
+        return view('frontend.projects', compact('featuredProjects', 'allProjects', 'banner'));
     }
 
 
@@ -104,7 +111,9 @@ class MainController extends Controller
 
         $allPricings = CalculatorPricing::all()->keyBy('category');
         // dd($allPricings);
-        return view('frontend.calculator', compact('allPricings'));
+        $banner = Banner::where('page_slug', 'calculator')->where('status', 1)->first();
+
+        return view('frontend.calculator', compact('allPricings', 'banner'));
     }
 
     public function about_us()
@@ -116,38 +125,48 @@ class MainController extends Controller
 
         $testimonials = Testimonial::where('status', 1)->orderBy('position')->get();
 
-        return view('frontend.about-us', compact('team', 'testimonials'));
+        $testimonials = Testimonial::where('status', 1)->orderBy('position')->get();
+        $banner = Banner::where('page_slug', 'about-us')->where('status', 1)->first();
+
+        return view('frontend.about-us', compact('team', 'testimonials', 'banner'));
     }
 
     public function privacy_policy()
     {
-        return view('frontend.privacy-policy');
+        $banner = Banner::where('page_slug', 'privacy-policy')->where('status', 1)->first();
+        return view('frontend.privacy-policy', compact('banner'));
     }
 
     public function contact_us()
     {
-        return view('frontend.contact-us');
+        $banner = Banner::where('page_slug', 'contact-us')->where('status', 1)->first();
+        return view('frontend.contact-us', compact('banner'));
     }
 
     public function blog()
     {
-        return view('frontend.blog');
+        $banner = Banner::where('page_slug', 'blog')->where('status', 1)->first();
+        return view('frontend.blog', compact('banner'));
     }
     public function termcondition()
     {
-        return view('frontend.terms-condition');
+        $banner = Banner::where('page_slug', 'terms-and-conditions')->where('status', 1)->first();
+        return view('frontend.terms-condition', compact('banner'));
     }
     public function faq()
     {
-        return view('frontend.faq');
+        $banner = Banner::where('page_slug', 'faq')->where('status', 1)->first();
+        return view('frontend.faq', compact('banner'));
     }
     public function help()
     {
-        return view('frontend.help');
+        $banner = Banner::where('page_slug', 'help')->where('status', 1)->first();
+        return view('frontend.help', compact('banner'));
     }
     public function gallery()
     {
-        return view('frontend.gallery');
+        $banner = Banner::where('page_slug', 'gallery')->where('status', 1)->first();
+        return view('frontend.gallery', compact('banner'));
     }
 
     public function blog_details($slug)

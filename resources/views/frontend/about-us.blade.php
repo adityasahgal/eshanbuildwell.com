@@ -8,12 +8,12 @@ $keywords = "";
 @section('meta_description'){{ $meta_description }}@stop
 @section('meta_keywords'){{ $keywords }}@stop
 @section('content')
-<section class="hero-banner">
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.2), rgba(15,25,50,0.2)), url('.url('storage/'.$banner->banner).');' : '' }}">
     <div class="container">
         <div class="hero-content">
-            <h1>About Us</h1>
+            <h1>{{ isset($banner) ? $banner->name : 'About Us' }}</h1>
             <div class="hero-divider"></div>
-            <p>Building Excellence, Delivering Trust</p>
+            <p>{{ isset($banner) ? $banner->tag_line : 'Building Excellence, Delivering Trust' }}</p>
         </div>
     </div>
 </section>

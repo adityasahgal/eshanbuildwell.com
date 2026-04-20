@@ -11,10 +11,18 @@ $keywords = "Eshan Buildwell blog, latest updates, construction tips, Eshan Buil
 @section('meta_description'){{ $meta_description }}@stop
 @section('meta_keywords'){{ $keywords }}@stop
 @section('content')
-<section class="hero-banner">
-  <div class="container"><div class="hero-content"><h1>Our Blog</h1><div class="hero-divider"></div><p>Stay Updated with Our Latest News &amp; Insights</p>
-  <div class="search-bar mt-3"><input type="text" placeholder="Search blog posts..." aria-label="Search"/><button type="button"><i class="bi bi-search"></i></button></div>
-  </div></div>
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.2), rgba(15,25,50,0.2)), url('.url('storage/'.$banner->banner).');' : '' }}">
+  <div class="container">
+    <div class="hero-content">
+      <h1>{{ isset($banner) ? $banner->name : 'Our Blog' }}</h1>
+      <div class="hero-divider"></div>
+      <p>{{ isset($banner) ? $banner->tag_line : 'Stay Updated with Our Latest News & Insights' }}</p>
+      <div class="search-bar mt-3">
+        <input type="text" placeholder="Search blog posts..." aria-label="Search"/>
+        <button type="button"><i class="bi bi-search"></i></button>
+      </div>
+    </div>
+  </div>
 </section>
 <div class="breadcrumb-bar"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li><li class="breadcrumb-item active">Blog</li></ol></nav></div></div>
 

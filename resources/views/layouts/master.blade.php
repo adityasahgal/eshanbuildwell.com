@@ -169,12 +169,12 @@ $genSetting = \App\Models\Setting::first();
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
 
-            <!-- <a href="{{ $genSetting['linkedin'] }}" class="linkedin" target="_blank">
+            <a href="{{ $genSetting['linkedin'] }}" class="linkedin" target="_blank">
                 <i class="fa-brands fa-linkedin-in"></i>
-            </a> -->
+            </a>
 
-            <a href="{{ $genSetting['twitter'] }}" class="twitter" target="_blank">
-                <i class="fa-brands fa-x-twitter"></i>
+            <a href="{{ $genSetting['google_plus'] }}" class="google" target="_blank">
+                <i class="fa-brands fa-google-plus-g"></i>
             </a>
 
             <a href="{{ $genSetting['instagram'] }}" class="instagram" target="_blank">

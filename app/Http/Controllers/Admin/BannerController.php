@@ -45,6 +45,7 @@ class BannerController extends Controller
         }
         $banner = new Banner;
         $banner->name = $request->name;
+        $banner->page_slug = $request->page_slug;
         $banner->url_link = $request->url_link;
         $banner->position = $request->position;
         $banner->image_alt = $request->image_alt;
@@ -111,6 +112,21 @@ class BannerController extends Controller
        </div>
        
         <div class="form-group">
+          <label for="page_slug">Target Page</label>
+          <select class="form-control" name="page_slug">
+              <option value="" ' . ($row->page_slug == "" ? "selected" : "") . '>None (General Banner)</option>
+              <option value="home" ' . ($row->page_slug == "home" ? "selected" : "") . '>Home Page Hero</option>
+              <option value="about-us" ' . ($row->page_slug == "about-us" ? "selected" : "") . '>About Us</option>
+              <option value="services" ' . ($row->page_slug == "services" ? "selected" : "") . '>Services</option>
+              <option value="projects" ' . ($row->page_slug == "projects" ? "selected" : "") . '>Projects</option>
+              <option value="bim-training" ' . ($row->page_slug == "bim-training" ? "selected" : "") . '>BIM Training</option>
+              <option value="calculator" ' . ($row->page_slug == "calculator" ? "selected" : "") . '>Calculator</option>
+              <option value="contact-us" ' . ($row->page_slug == "contact-us" ? "selected" : "") . '>Contact Us</option>
+              <option value="gallery" ' . ($row->page_slug == "gallery" ? "selected" : "") . '>Gallery</option>
+              <option value="blog" ' . ($row->page_slug == "blog" ? "selected" : "") . '>Blog</option>
+          </select>
+        </div>
+        <div class="form-group">
          <label for="tag_line">Tag Line</label>
          <textarea name="tag_line" class="form-control">' . $row->tag_line . '</textarea>
        </div>
@@ -138,6 +154,7 @@ class BannerController extends Controller
 
         $banner = Banner::findOrFail($request->id);
         $banner->name = $request->name;
+        $banner->page_slug = $request->page_slug;
         $banner->url_link = $request->url_link;
         $banner->position = $request->position;
         $banner->image_alt = $request->image_alt;

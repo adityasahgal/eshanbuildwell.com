@@ -14,18 +14,23 @@ construction company Delhi NCR";
 @section('meta_keywords'){{ $keywords }}@stop
 
 @section('content')
-<section class="hero-banner">
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.2), rgba(15,25,50,0.2)), url('.url('storage/'.$banner->banner).');' : '' }}">
   <div class="container">
     <div class="hero-content">
-      <h1>Expert Construction Services</h1>
+      <h1>{{ isset($banner) ? $banner->name : 'Expert Construction Services' }}</h1>
       <div class="hero-divider"></div>
-      <p>For <strong style="color:var(--orange)">Residential, Commercial</strong> &amp; <strong
-          style="color:var(--orange)">Industrial</strong> Projects</p>
+      <p>
+        @if(isset($banner))
+          {{ $banner->tag_line }}
+        @else
+          For <strong style="color:var(--orange)">Residential, Commercial</strong> &amp; <strong style="color:var(--orange)">Industrial</strong> Projects
+        @endif
+      </p>
     </div>
   </div>
 </section>
 
-<div class="trust-bar">
+<!-- <div class="trust-bar">
   <div class="container">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
       <div class="trust-item"><i class="bi bi-clipboard-check"></i> Accurate BOQ Preparation</div>
@@ -39,7 +44,7 @@ construction company Delhi NCR";
       <div class="trust-item"><i class="bi bi-trophy"></i> Proven Results</div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="breadcrumb-bar">
   <div class="container">
@@ -266,7 +271,7 @@ construction company Delhi NCR";
   <div class="container">
     <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
       <div class="stat-item">
-        <div class="stat-num">200+</div>
+        <div class="stat-num">20+</div>
         <div class="stat-label">Projects Completed</div>
       </div>
       <div class="stat-sep d-none d-md-block"></div>
@@ -276,17 +281,17 @@ construction company Delhi NCR";
       </div>
       <div class="stat-sep d-none d-md-block"></div>
       <div class="stat-item">
-        <div class="stat-num">500+</div>
+        <div class="stat-num">20+</div>
         <div class="stat-label">Happy Clients</div>
       </div>
       <div class="stat-sep d-none d-md-block"></div>
       <div class="stat-item">
-        <div class="stat-num">50+</div>
+        <div class="stat-num">30+</div>
         <div class="stat-label">Expert Team Members</div>
       </div>
       <div class="stat-sep d-none d-md-block"></div>
       <div class="stat-item">
-        <div class="stat-num">100%</div>
+        <div class="stat-num">99%</div>
         <div class="stat-label">On-Time Delivery</div>
       </div>
     </div>
@@ -362,7 +367,7 @@ construction company Delhi NCR";
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="py-5" style="background:var(--gray-bg)">
+<!-- <section class="py-5" style="background:var(--gray-bg)">
   <div class="container">
     <div class="text-center mb-5">
       <p class="sec-eyebrow">Client Testimonials</p>
@@ -405,7 +410,7 @@ construction company Delhi NCR";
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- CTA -->
 <section class="cta-strip">

@@ -79,8 +79,16 @@ $keywords = "Karinya Villas privacy policy, privacy practices, villa booking pri
 </style>
 
 <!-- Banner Section -->
-<section class="about-banner home-banner">
-    <h1 style=" font-size: 32px; color: #fff; text-shadow: 2px 2px black; font-weight: 700;">Privacy Policy</h1>
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.7), rgba(15,25,50,0.7)), url('.url('storage/'.$banner->banner).');' : '' }}">
+    <div class="container">
+        <div class="hero-content">
+            <h1>{{ isset($banner) ? $banner->name : 'Privacy Policy' }}</h1>
+            @if(isset($banner) && $banner->tag_line)
+                <div class="hero-divider"></div>
+                <p>{{ $banner->tag_line }}</p>
+            @endif
+        </div>
+    </div>
 </section>
 
 

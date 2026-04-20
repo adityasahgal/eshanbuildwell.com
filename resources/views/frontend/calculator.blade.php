@@ -12,12 +12,12 @@ calculator";
 @section('meta_keywords'){{ $keywords }}@stop
 
 @section('content')
-<section class="hero-banner">
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.2), rgba(15,25,50,0.2)), url('.url('storage/'.$banner->banner).');' : '' }}">
     <div class="container">
         <div class="hero-content">
-            <h1>Building Estimate Calculator</h1>
+            <h1>{{ isset($banner) ? $banner->name : 'Building Estimate Calculator' }}</h1>
             <div class="hero-divider"></div>
-            <p>Get an Instant Estimate for Your Construction Project</p>
+            <p>{{ isset($banner) ? $banner->tag_line : 'Get an Instant Estimate for Your Construction Project' }}</p>
         </div>
     </div>
 </section>
@@ -1355,7 +1355,7 @@ calculator";
             });
 
         // ---- WhatsApp: send basic enquiry to admin ----
-        sendWhatsAppEnquiry();
+        // sendWhatsAppEnquiry(); // Disabled as per user request
     }
 
     // ---------------------------------------------------------------

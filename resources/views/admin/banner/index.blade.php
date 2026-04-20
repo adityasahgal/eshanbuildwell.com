@@ -109,6 +109,22 @@
             </div>
 
             <div class="form-group">
+              <label for="page_slug">Target Page</label>
+              <select class="form-control" name="page_slug">
+                <option value="">None (General Banner)</option>
+                <option value="home">Home Page Hero</option>
+                <option value="about-us">About Us</option>
+                <option value="services">Services</option>
+                <option value="projects">Projects</option>
+                <option value="bim-training">BIM Training</option>
+                <option value="calculator">Calculator</option>
+                <option value="contact-us">Contact Us</option>
+                <option value="gallery">Gallery</option>
+                <option value="blog">Blog</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <label for="image_alt">Image Alt</label>
               <input type="text" name="image_alt" class="form-control">
             </div>

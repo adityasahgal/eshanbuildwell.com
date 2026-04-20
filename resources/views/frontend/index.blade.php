@@ -15,17 +15,19 @@ construction company Delhi NCR";
 
 @section('content')
 <!-- HERO -->
-<section class="hero-section">
+<section class="hero-banner" style="{{ isset($banner) ? 'background-image:linear-gradient(rgba(15,25,50,0.3), rgba(15,25,50,0.3)), url('.url('storage/'.$banner->banner).');' : '' }}">
     <div class="container">
         <div class="hero-content">
-            <h1>Expert Construction Services<br>For <span>Residential, Commercial</span><br>&amp;
-                <span>Industrial</span> Projects
+            <h1>
+                Expert Construction Services<br>For <span>Residential, Commercial</span><br>&amp; <span>Industrial</span> Projects
             </h1>
-            <p class="mt-2 mb-4">We provide end-to-end construction solutions with precision &amp; quality</p>
-            <a href="{{ url('calculator') }}" class="btn-est">Get Your Free Estimate <i
-                    class="bi bi-chevron-right"></i></a>
-            <a href="https://wa.me/919015444490?text=Hi%20I%20want%20to%20book%20a%20consultation" class="btn-est"
-                target="_blank">
+            <p class="mt-2 mb-4">
+                We provide end-to-end construction solutions with precision &amp; quality
+            </p>
+            <a href="{{ url('calculator') }}" class="btn-est mb-2">
+                Get Your Free Estimate <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="https://wa.me/919015444490?text=Hi%20I%20want%20to%20book%20a%20consultation" class="btn-est" target="_blank">
                 Book Your Consultation <i class="bi bi-chevron-right"></i>
             </a>
         </div>
@@ -50,8 +52,7 @@ construction company Delhi NCR";
     </div>
 </div>
 
-<!-- ABOUT ESHAN -->
-<section class="py-5 bg-white">
+<!-- <section class="py-5 bg-white">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-12 col-lg-6">
@@ -97,7 +98,7 @@ construction company Delhi NCR";
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- SERVICES -->
 <section class="py-5" style="background:var(--gray-bg)">
@@ -389,7 +390,7 @@ construction company Delhi NCR";
 <section class="project-slider-sec">
     <div class="container">
         @php
-        $projectSliderCount = isset($projectSliders) ? $projectSliders->count() : 0;
+        $projectSliderCount = isset($projectSliders) ? $projectSliders->count() : 0;                
         @endphp
         <div class="proj-slider-header">
             <div>
@@ -609,12 +610,68 @@ construction company Delhi NCR";
     </div>
 </section>
 
+<!-- CONSTRUCTION PROCESS -->
+<section style="background:var(--navy);padding:80px 0">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="sec-eyebrow" style="color:rgba(255,255,255,.6)">How We Work</p>
+      <h2 class="sec-title" style="color:#fff">🏗️ Our Construction Process</h2>
+      <p class="sec-sub mx-auto mt-2" style="color:rgba(255,255,255,.6)">A streamlined, transparent approach that keeps you informed at every stage</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-md-4">
+        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
+          <div class="step-num fs-1 fw-bold opacity-1 mb-3">01</div>
+          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Consultation</h5>
+          <p class="small opacity-75">We begin with understanding your requirements, vision, and budget. This stage helps us align expectations and define the project scope clearly.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
+          <div class="step-num fs-1 fw-bold opacity-1 mb-3">02</div>
+          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Approx Estimate</h5>
+          <p class="small opacity-75">Based on initial inputs, we provide a rough cost estimate to give you a clear idea of project feasibility and budget planning.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
+          <div class="step-num fs-1 fw-bold opacity-1 mb-3" >03</div>
+          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Design & Planning</h5>
+          <p class="small opacity-75">Our team develops architectural designs and detailed planning, ensuring proper space utilization, functionality, and execution strategy.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mt-md-4">
+        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
+          <div class="step-num fs-1 fw-bold opacity-1 mb-3">04</div>
+          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Accurate Costing of Project</h5>
+          <p class="small opacity-75">We prepare a detailed BOQ and cost analysis with material specifications, ensuring transparency and eliminating hidden costs.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mt-md-4">
+        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
+          <div class="step-num fs-1 fw-bold opacity-1 mb-3">05</div>
+          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Construction</h5>
+          <p class="small opacity-75">Execution begins with strict quality control, site supervision, and regular coordination to ensure timely and disciplined project delivery.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mt-md-4">
+        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
+          <div class="step-num fs-1 fw-bold opacity-1 mb-3" >06</div>
+          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Handover</h5>
+          <p class="small opacity-75">After completion, we deliver the project with proper finishing, quality checks, and final approvals—ready for use.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- STATS BAR -->
 <section class="stats-bar">
     <div class="container">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
             <div class="stat-item">
-                <div class="stat-num">200+</div>
+                <div class="stat-num">20+</div>
                 <div class="stat-label">Projects Completed</div>
             </div>
             <div class="stat-sep d-none d-md-block"></div>
@@ -624,12 +681,12 @@ construction company Delhi NCR";
             </div>
             <div class="stat-sep d-none d-md-block"></div>
             <div class="stat-item">
-                <div class="stat-num">500+</div>
+                <div class="stat-num">20+</div>
                 <div class="stat-label">Happy Clients</div>
             </div>
             <div class="stat-sep d-none d-md-block"></div>
             <div class="stat-item">
-                <div class="stat-num">100%</div>
+                <div class="stat-num">99%</div>
                 <div class="stat-label">On-Time Delivery</div>
             </div>
         </div>
@@ -664,61 +721,6 @@ construction company Delhi NCR";
             @endforelse
         </div>
     </div>
-</section>
-
-<!-- CONSTRUCTION PROCESS -->
-<section style="background:var(--navy);padding:80px 0">
-  <div class="container">
-    <div class="text-center mb-5">
-      <p class="sec-eyebrow" style="color:rgba(255,255,255,.6)">How We Work</p>
-      <h2 class="sec-title" style="color:#fff">🏗️ Our Construction Process</h2>
-      <p class="sec-sub mx-auto mt-2" style="color:rgba(255,255,255,.6)">A streamlined, transparent approach that keeps you informed at every stage</p>
-    </div>
-    <div class="row g-4 justify-content-center">
-      <div class="col-12 col-md-4">
-        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
-          <div class="step-num fs-1 fw-bold opacity-25 mb-3" style="color:var(--orange)">01</div>
-          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Consultation</h5>
-          <p class="small opacity-75">We begin with understanding your requirements, vision, and budget. This stage helps us align expectations and define the project scope clearly.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
-          <div class="step-num fs-1 fw-bold opacity-25 mb-3" style="color:var(--orange)">02</div>
-          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Approx Estimate</h5>
-          <p class="small opacity-75">Based on initial inputs, we provide a rough cost estimate to give you a clear idea of project feasibility and budget planning.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4">
-        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
-          <div class="step-num fs-1 fw-bold opacity-25 mb-3" style="color:var(--orange)">03</div>
-          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Design & Planning</h5>
-          <p class="small opacity-75">Our team develops architectural designs and detailed planning, ensuring proper space utilization, functionality, and execution strategy.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 mt-md-4">
-        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
-          <div class="step-num fs-1 fw-bold opacity-25 mb-3" style="color:var(--orange)">04</div>
-          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Accurate Costing of Project</h5>
-          <p class="small opacity-75">We prepare a detailed BOQ and cost analysis with material specifications, ensuring transparency and eliminating hidden costs.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 mt-md-4">
-        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
-          <div class="step-num fs-1 fw-bold opacity-25 mb-3" style="color:var(--orange)">05</div>
-          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Construction</h5>
-          <p class="small opacity-75">Execution begins with strict quality control, site supervision, and regular coordination to ensure timely and disciplined project delivery.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-4 mt-md-4">
-        <div class="step-card h-100 p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-10 text-white">
-          <div class="step-num fs-1 fw-bold opacity-25 mb-3" style="color:var(--orange)">06</div>
-          <h5 class="fw-bold mb-3" style="font-family:'Barlow Condensed',sans-serif">Handover</h5>
-          <p class="small opacity-75">After completion, we deliver the project with proper finishing, quality checks, and final approvals—ready for use.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- CTA -->

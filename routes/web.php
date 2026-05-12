@@ -22,6 +22,16 @@ use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// Fallback route to serve images directly from storage/app/public
+// This solves the issue of missing storage symlink on the production server.
+Route::get('/storage/{path}', function ($path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    return response()->file($filePath);
+})->where('path', '.*');
+
 // Route::get('/test/noCaptcha', function () {
 //     return view('welcome');
 // });

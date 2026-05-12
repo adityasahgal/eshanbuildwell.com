@@ -120,6 +120,12 @@
                     </a>
                 </li>
                 @endcan
+                <li class="nav-item">
+                    <a href="{{ route('bim-training-content.edit') }}" class="nav-link {{ Route::is('bim-training-content.*') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>BIM Training Content</p>
+                    </a>
+                </li>
             </ul>
         </li>
         <li class="nav-item">

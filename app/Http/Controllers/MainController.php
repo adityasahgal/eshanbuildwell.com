@@ -56,7 +56,8 @@ class MainController extends Controller
     public function bim_training()
     {
         $banner = Banner::where('page_slug', 'bim-training')->where('status', 1)->first();
-        return view('frontend.bim-training', compact('banner'));
+        $content = \App\Models\BimTrainingContent::first();
+        return view('frontend.bim-training', compact('banner', 'content'));
     }
 
     public function projects()

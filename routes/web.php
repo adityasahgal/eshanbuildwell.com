@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CalculatorPricingController;
 use App\Http\Controllers\Admin\CalculatorEnquiryController;
 use App\Http\Controllers\Admin\ProjectSliderController;
+use App\Http\Controllers\BimTrainingContentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
@@ -165,6 +166,10 @@ Route::group(['middleware' => 'XssSanitizer'], function () {
             Route::post('permission/update', [PermissionController::class, 'update'])->name('permission.update');
             Route::post('permission/status', [PermissionController::class, 'status'])->name('permission.status');
             Route::post('permission/destroy', [PermissionController::class, 'destroy'])->name('permission.destroy');
+            // Bim Training Content Routes
+            Route::get('bim-training-content', [BimTrainingContentController::class, 'edit'])->name('bim-training-content.edit');
+            Route::post('bim-training-content', [BimTrainingContentController::class, 'update'])->name('bim-training-content.update');
+
         });
     });
 

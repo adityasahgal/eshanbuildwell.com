@@ -1159,7 +1159,11 @@ $keywords = $content->meta_keywords ?? "BIM Training, Revit Training, Navisworks
                     @if($content && $content->learn_modules)
                         @foreach($content->learn_modules as $module)
                         <article class="bim-learn-card">
-                            <div class="bim-learn-top">
+                            <div class="bim-learn-top" 
+                                @if(isset($module['image']) && $module['image']) 
+                                style="background: linear-gradient(180deg, rgba(26,42,74,0) 0%, rgba(26,42,74,0.85) 60%, var(--navy) 100%), url('{{ asset($module['image']) }}') center/cover no-repeat; padding-top: 130px;" 
+                                @endif
+                            >
                                 <span><i class="bi {{ $module['icon'] ?? 'bi-building' }}"></i></span>
                                 <h4>{{ $module['title'] ?? '' }}</h4>
                                 <small>{{ $module['subtitle'] ?? '' }}</small>

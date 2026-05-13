@@ -37,7 +37,7 @@ class BimTrainingContentController extends Controller
         // Handle JSON arrays
         if ($request->has('learn_modules')) {
             $modules = [];
-            foreach ($request->learn_modules as $module) {
+            foreach ($request->learn_modules as $index => $module) {
                 if (!empty($module['title'])) {
                     if (!empty($module['items_str'])) {
                         $module['items'] = array_values(array_filter(array_map('trim', explode("\n", $module['items_str']))));
@@ -45,6 +45,14 @@ class BimTrainingContentController extends Controller
                         $module['items'] = [];
                     }
                     unset($module['items_str']);
+
+                    if ($request->hasFile("learn_modules.{$index}.image")) {
+                        $module['image'] = 'storage/' . $request->file("learn_modules.{$index}.image")->store('bim_training', 'public');
+                    } elseif (isset($module['existing_image'])) {
+                        $module['image'] = $module['existing_image'];
+                    }
+                    unset($module['existing_image']);
+
                     $modules[] = $module;
                 }
             }

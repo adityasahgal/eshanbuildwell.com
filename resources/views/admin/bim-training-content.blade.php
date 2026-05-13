@@ -159,17 +159,25 @@
                                 <div class="card card-outline card-secondary mb-3 module-item">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4 form-group">
+                                            <div class="col-md-3 form-group">
                                                 <label>Title</label>
                                                 <input type="text" class="form-control" name="learn_modules[{{$index}}][title]" value="{{ $module['title'] ?? '' }}">
                                             </div>
-                                            <div class="col-md-4 form-group">
+                                            <div class="col-md-3 form-group">
                                                 <label>Subtitle</label>
                                                 <input type="text" class="form-control" name="learn_modules[{{$index}}][subtitle]" value="{{ $module['subtitle'] ?? '' }}">
                                             </div>
-                                            <div class="col-md-3 form-group">
-                                                <label>Icon (Bootstrap Class)</label>
+                                            <div class="col-md-2 form-group">
+                                                <label>Icon</label>
                                                 <input type="text" class="form-control" name="learn_modules[{{$index}}][icon]" value="{{ $module['icon'] ?? '' }}">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <label>Image</label>
+                                                <input type="file" class="form-control p-1" name="learn_modules[{{$index}}][image]">
+                                                @if(isset($module['image']) && $module['image'])
+                                                    <input type="hidden" name="learn_modules[{{$index}}][existing_image]" value="{{ $module['image'] }}">
+                                                    <img src="{{ asset($module['image']) }}" alt="Image" class="img-thumbnail mt-1" style="max-height: 40px;">
+                                                @endif
                                             </div>
                                             <div class="col-md-1 form-group d-flex align-items-end">
                                                 <button type="button" class="btn btn-danger remove-module w-100"><i class="fas fa-trash"></i></button>
@@ -320,17 +328,21 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="card card-outline card-secondary mb-3 module-item">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label>Title</label>
                             <input type="text" class="form-control" name="learn_modules[${moduleIndex}][title]">
                         </div>
-                        <div class="col-md-4 form-group">
+                        <div class="col-md-3 form-group">
                             <label>Subtitle</label>
                             <input type="text" class="form-control" name="learn_modules[${moduleIndex}][subtitle]">
                         </div>
-                        <div class="col-md-3 form-group">
-                            <label>Icon (Bootstrap Class)</label>
+                        <div class="col-md-2 form-group">
+                            <label>Icon</label>
                             <input type="text" class="form-control" name="learn_modules[${moduleIndex}][icon]">
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>Image</label>
+                            <input type="file" class="form-control p-1" name="learn_modules[${moduleIndex}][image]">
                         </div>
                         <div class="col-md-1 form-group d-flex align-items-end">
                             <button type="button" class="btn btn-danger remove-module w-100"><i class="fas fa-trash"></i></button>

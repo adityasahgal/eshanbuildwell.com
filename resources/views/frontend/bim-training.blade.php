@@ -4,6 +4,7 @@
 $meta_title = $content->meta_title ?? "BIM (Revit) Professional Training Program | Eshan Buildwell";
 $meta_description = $content->meta_description ?? "Learn complete BIM 3D, 4D, and 5D workflow with live project training using Autodesk Revit, Navisworks, and DiRoots at Eshan Buildwell.";
 $keywords = $content->meta_keywords ?? "BIM Training, Revit Training, Navisworks, DiRoots, 3D BIM, 4D Planning, 5D Costing, Eshan Buildwell";
+$genSetting = \App\Models\Setting::first();
 @endphp
 
 @section('meta_title'){{ $meta_title }}@stop
@@ -1098,7 +1099,7 @@ $keywords = $content->meta_keywords ?? "BIM Training, Revit Training, Navisworks
 
                         <div class="d-flex flex-wrap gap-3 mt-4">
                             <a href="#bim-register" class="btn-est">Enroll Now <i class="bi bi-chevron-right"></i></a>
-                            <a href="https://wa.me/919015444490?text=Hi%2C%20I%20want%20details%20about%20the%20BIM%20Training%20Program."
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $genSetting['phone']) }}?text=Hi%2C%20I%20want%20details%20about%20the%20BIM%20Training%20Program."
                                 target="_blank" class="btn-cta-outline">WhatsApp for Details</a>
                         </div>
                     </div>
@@ -1295,7 +1296,7 @@ $keywords = $content->meta_keywords ?? "BIM Training, Revit Training, Navisworks
                                     <i class="bi bi-telephone-fill"></i>
                                     <div>
                                         <strong>Quick Contact</strong>
-                                        <span>Call or WhatsApp: +91 901544490</span>
+                                        <span>Call or WhatsApp: {{ $genSetting['phone'] }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -1308,16 +1309,15 @@ $keywords = $content->meta_keywords ?? "BIM Training, Revit Training, Navisworks
                             <ul class="bim-contact-list">
                                 <li>
                                     <i class="bi bi-telephone-fill"></i>
-                                    <div><a href="tel:+919015444490">+91 901544490</a></div>
+                                    <div><a href="tel:{{ $genSetting['phone'] }}">{{ $genSetting['phone'] }}</a></div>
                                 </li>
                                 <li>
                                     <i class="bi bi-envelope-fill"></i>
-                                    <div><a href="mailto:learning@eshanbuildwell.com">learning@eshanbuildwell.com</a>
-                                    </div>
+                                    <div><a href="mailto:{{ $genSetting['email'] }}">{{ $genSetting['email'] }}</a></div>
                                 </li>
                                 <li>
                                     <i class="bi bi-geo-alt-fill"></i>
-                                    <div>E-02/38, Sector 16, Rohini, Delhi – 110089</div>
+                                    <div>{{ $genSetting['address'] }}</div>
                                 </li>
                             </ul>
                         </div>
@@ -1417,7 +1417,7 @@ $keywords = $content->meta_keywords ?? "BIM Training, Revit Training, Navisworks
             <p>Join the next batch and learn BIM workflow with practical project-based guidance.</p>
             <div class="d-flex flex-wrap justify-content-center gap-3">
                 <a href="#bim-register" class="btn-cta-lg">Register Now <i class="bi bi-chevron-right ms-2"></i></a>
-                <a href="https://wa.me/919015444490?text=Hi%2C%20I%20want%20to%20enroll%20in%20the%20BIM%20Training%20Program."
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $genSetting['phone']) }}?text=Hi%2C%20I%20want%20to%20enroll%20in%20the%20BIM%20Training%20Program."
                     target="_blank" class="btn-cta-outline">WhatsApp Us</a>
             </div>
         </div>
@@ -1446,7 +1446,7 @@ document.getElementById('bimTrainingForm')?.addEventListener('submit', function(
         message ? 'Message: ' + message : ''
     ].filter(Boolean).join('\n');
 
-    window.open('https://wa.me/919015444490?text=' + encodeURIComponent(text), '_blank');
+    window.open('https://wa.me/{{ preg_replace('/[^0-9]/', '', $genSetting['phone']) }}?text=' + encodeURIComponent(text), '_blank');
 });
 </script>
 @endpush
